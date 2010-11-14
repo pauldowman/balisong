@@ -1,0 +1,8 @@
+.DS_Store
+.bundle
+TODO.txt
+balisong-content
+capybara-*.html
+db/*.sqlite3
+log/*.log
+tmp/**/*

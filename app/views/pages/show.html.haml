@@ -1,0 +1,20 @@
+- @title = @page.title
+
+- if @page.categories && @page.categories.any?
+  Categories:
+  %ul#categories
+    - @page.categories.sort.each do |c|
+      %li
+        = link_to c, "/category/#{c}"
+
+- if @page.date
+  #date
+    Posted at:
+    = @page.date
+
+%h1
+  = @title
+	
+#page
+  ~ raw render_part(@page, @page.main_part, @formatter)
+

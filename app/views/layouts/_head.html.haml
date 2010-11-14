@@ -1,0 +1,8 @@
+%head
+  %title
+    -if @title.blank?
+      Balisong
+    - else
+      = @title
+
+  = render :partial => '/layouts/syntax_highlighter'

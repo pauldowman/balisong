@@ -1,0 +1,15 @@
+%h1
+  Main p
+
+Some recent posts:
+%ul#recent_posts
+  - @recent_posts.each do |p|
+    %li
+      = link_to p.title, '/' + Page.urlify(p.id)
+
+All categories:
+%ul#all_categories
+  - @categories.each do |cat|
+    %li
+      = link_to cat, '/category/' + cat
+

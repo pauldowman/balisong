@@ -1,0 +1,9 @@
+%h2
+  = @title
+%ul#pages
+  - @pages.each do |page|
+    %li
+      = page.date
+      →
+      = link_to page.title, '/' + Page.urlify(page.id)
+
