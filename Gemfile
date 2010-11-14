@@ -4,7 +4,7 @@ source :rubygems
 
 gem 'rails', '>=3.0.0'
 
-gem 'gitmodel', :path => '~/dev/gitmodel'
+gem 'gitmodel'
 gem 'haml'
 gem 'mime-types', :require => 'mime/types'
 gem 'rdiscount'
