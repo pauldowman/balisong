@@ -37,7 +37,7 @@ Features
 * All data is stored using Git (including dynamic data such as comments if/when
   that gets implemented). (It uses
   [GitModel](https://github.com/pauldowman/gitmodel))
-  * Content can be edited locally and deployed to the production serve using
+  * Content can be edited locally and deployed to the production server using
     Git without redeploying the app.
   * Content can also be pushed to a public repository like GitHub where people
     can follow it for updates and fork it to contribute articles.
@@ -106,7 +106,9 @@ The `formatter` argument can often be omitted if it can be guessed by the
 filename extension, for example the following are equivalent, and will include
 the file named knobcreek.markdown, rendering it as HTML:
 
-    {{ knobcreek.markdown | markdown}} {{ knobcreek.markdown}}
+    {{ knobcreek.markdown | markdown}}
+
+    {{ knobcreek.markdown}}
 
 But it can also be used to render a file in a different format, for example as
 source code. For example, to render the file named knobcreek.html as source
@@ -123,21 +125,22 @@ Some more examples:
 
 Ruby code:
 
-{{whiskey.rb | code(ruby)}}
+    {{whiskey.rb | code(ruby)}}
 
 Plain text files can be rendered in &lt;pre&gt; blocks:
 
-{{makersmark.txt | text}}
+    {{makersmark.txt | text}}
 
 Image files are rendered as images inline in the HTML (i.e. as &lg;img&gt; tags)
 
-{{bulleit.jpg | image}}
+    {{bulleit.jpg | image}}
 
 Any type of file can be rendered as a download link, and when clicked the
 browser will prompt to download the file instead of displaying it:
 
-{{archive.zip | download}}
-{{bulleit.jpg | download}}
+    {{archive.zip | download}}
+
+    {{bulleit.jpg | download}}
 
 The included content files can, of course, include other files. (Recursive includes are detected by the app hanging forever or crashing or something, I haven't tried it. Definitely not recommended.)
 
