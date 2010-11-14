@@ -1,9 +1,7 @@
-Balisong: A blogging app for coders
+Balisong: A blog-aware website for coders
 -----------------------------------
 
-_https://github.com/pauldowman/balisong_
-
-Balisong is a blog-aware website for coders, written in Ruby.
+_[https://github.com/pauldowman/balisong](https://github.com/pauldowman/balisong)_
 
 Balisong believes that:
 
@@ -19,8 +17,10 @@ Balisong believes that:
 Features
 --------
 
-* A post or page is simply a directory of files. There's a main file (think of
-  it as index.html, but it can be Markdown, Textile, HTML, whatever), plus
+* A post or page is [simply a directory of
+  files](https://github.com/pauldowman/balisong-sample-db/tree/master/pages/foo/).
+  There's a main file (think of it as index.html, but it can be Markdown,
+  Textile, HTML, whatever), plus
   included partials, image files, source code files, and downloadable files of
   any type.
   * Text can be written as Markdown, Textile, HTML, plain text or any other
@@ -79,6 +79,8 @@ Format of pages and posts
 -------------------------
 
 The content database (i.e. the Git repo where the page content is stored) has a directory named "pages" at it's root, and inside that it has a directory for each page or post.
+
+There's an example at [https://github.com/pauldowman/balisong-sample-db](https://github.com/pauldowman/balisong-sample-db)
 
 So each page or post is a directory inside CONTENT_ROOT/pages. The directory must contain two files:
 1. A file for your article text named "main.ext" where "ext" is one of the
@@ -146,6 +148,7 @@ The included content files can, of course, include other files. (Recursive inclu
 
 
 __Pages vs. Posts__
+
 Blog "posts" are simply pages that have a date as part of the directory name in
 the format `YYYY-MM-DD-post-id-string.`
 
@@ -155,6 +158,12 @@ url that is simply the page name, e.g.
 http://yourblog.com/my-favorite-bourbons.
 
 Posts (as opposed to Pages) show up in the "Recent posts" list.
+
+
+Contributors
+------------
+
+* [Paul Dowman](http://pauldowman.com/about) ([@pauldowman](http://twitter.com/pauldowman))
 
 
 To do
