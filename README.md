@@ -7,11 +7,12 @@ Balisong believes that:
 
 * A coder should have a website that they hack on and customize.
 * The best way to edit website content is with your favorite text editor.
-* A static site isn't enough. A lot can be done with JavaScript but sometimes you need some
-  server-side functionality.
+* Source code sections in blog articles should be a first-class citizen, stored
+  as source files rather than cut & pasted into the article text.
+* A static site isn't enough. A lot can be done with JavaScript but sometimes
+  you need some server-side functionality.
 * Content should be separate from the app and should be deployed/updated
   separately.
-* It must be super simple to write content, deploy, and hack on.
 
 
 Features
@@ -23,8 +24,7 @@ Features
   Textile, HTML, whatever), plus
   included partials, image files, source code files, and downloadable files of
   any type.
-  * Text can be written as Markdown, Textile, HTML, plain text or any other
-    common markup format.
+  * Text can be written as Markdown, Textile, HTML or plain text.
   * Posts/pages can consist of multiple parts: text, code blocks, and images.
     Parts can be separate files and can be included by each other.
   * Code blocks can be separate source code files so that they can be tested,
@@ -108,41 +108,41 @@ The `formatter` argument can often be omitted if it can be guessed by the
 filename extension, for example the following are equivalent, and will include
 the file named knobcreek.markdown, rendering it as HTML:
 
-    {{ knobcreek.markdown | markdown}}
+    {{ knobcreek.markdown | markdown }}
 
-    {{ knobcreek.markdown}}
+    {{ knobcreek.markdown }}
 
 But it can also be used to render a file in a different format, for example as
 source code. For example, to render the file named knobcreek.html as source
 code with syntax highlighting you would do:
 
-    {{ knobcreek.html | code(html)}}
+    {{ knobcreek.html | code(html) }}
 
 Note that you could also have the following which would simply include the file
 as HTML to be rendered normally by the browser:
 
-    {{ knobcreek.html}}
+    {{ knobcreek.html }}
 
 Some more examples:
 
 Ruby code:
 
-    {{whiskey.rb | code(ruby)}}
+    {{ whiskey.rb | code(ruby) }}
 
 Plain text files can be rendered in &lt;pre&gt; blocks:
 
-    {{makersmark.txt | text}}
+    {{ makersmark.txt | text }}
 
 Image files are rendered as images inline in the HTML (i.e. as &lg;img&gt; tags)
 
-    {{bulleit.jpg | image}}
+    {{ bulleit.jpg | image }}
 
 Any type of file can be rendered as a download link, and when clicked the
 browser will prompt to download the file instead of displaying it:
 
-    {{archive.zip | download}}
+    {{ archive.zip | download }}
 
-    {{bulleit.jpg | download}}
+    {{ bulleit.jpg | download }}
 
 The included content files can, of course, include other files. (Recursive includes are detected by the app hanging forever or crashing or something, I haven't tried it. Definitely not recommended.)
 
