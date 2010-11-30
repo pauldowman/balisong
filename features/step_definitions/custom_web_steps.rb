@@ -6,7 +6,7 @@ Given /^(?:|I )am on the path "(.+)"$/ do |page_name|
   visit path_to(page_name)
 end
 
-Then /^The title should be "(.+)"$/ do |title|
+Then /^The page title should include "([^"]*)"/ do |title|
   page.should have_xpath('//head/title', :text => title)
 end
 
