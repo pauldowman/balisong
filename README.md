@@ -182,8 +182,9 @@ To do
 
 * Documentation
 * A simple but nice-looking default design
-  * HTML 5 boilerplate? https://github.com/himmel/html5-boilerplate
+  * HTML 5
 * Atom feed
 * Comment support
 * Search for TODO in the code and Cucumber features tagged with @wip
+* Performance: object caching, HTTP caching
 
