@@ -147,7 +147,8 @@ browser will prompt to download the file instead of displaying it:
 The included content files can, of course, include other files. (Recursive includes are detected by the app hanging forever or crashing or something, I haven't tried it. Definitely not recommended.)
 
 
-__Pages vs. Posts__
+Pages vs. Posts
+---------------
 
 Blog "posts" are simply pages that have a date as part of the directory name in
 the format `YYYY-MM-DD-post-id-string.`
@@ -158,6 +159,16 @@ url that is simply the page name, e.g.
 http://yourblog.com/my-favorite-bourbons.
 
 Posts (as opposed to Pages) show up in the "Recent posts" list.
+
+
+Attributes
+----------
+
+Here are some attributes that you can use in the attributes.json file:
+
+* `title`: This is the title of the page/post, of course.
+* `categories`: An array of category names.
+* `site_menu_position`: An integer. If this is set, it determines where this page appears in the site menu (navigation links that appear on all pages).
 
 
 Contributors

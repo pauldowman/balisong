@@ -5,9 +5,9 @@ class Page
 
   attribute :title
   attribute :categories, :default => []
-  attribute :allow_comments, :default => true
-  attribute :include_in_site_menu, :default => false
-  attribute :include_in_feed, :default => true
+  attribute :site_menu_position, :default => nil
+  attribute :allow_comments, :default => true # TODO implement comments
+  attribute :include_in_feed, :default => true # TODO implement Atom feed
 
   def date
     if id =~ /(\d{4}-\d{2}-\d{2})-.+/

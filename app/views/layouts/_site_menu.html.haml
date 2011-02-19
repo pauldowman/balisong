@@ -1,0 +1,4 @@
+%ul#site-menu
+  - @site_menu.each do |p|
+    %li
+      = link_to p.title, '/' + Page.urlify(p.id)
