@@ -30,6 +30,7 @@ GEM
       activemodel (= 3.0.4)
       activesupport (= 3.0.4)
     activesupport (3.0.4)
+    albino (1.2.3)
     arel (2.0.8)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
@@ -67,7 +68,7 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.3.3)
       json (~> 1.4.6)
-    gitmodel (0.0.2)
+    gitmodel (0.0.1)
       activemodel (>= 3.0.1)
       activesupport (>= 3.0.1)
       grit (>= 2.3.0)
@@ -145,6 +146,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   ZenTest
+  albino
   autotest
   autotest-fsevent
   autotest-rails

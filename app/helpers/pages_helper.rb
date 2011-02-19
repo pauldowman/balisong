@@ -42,7 +42,11 @@ module PagesHelper
       out = "<pre>#{html_escape(raw_data)}</pre>"
     when "code"
       lang = formatter_arg || Page.type(part_name)
-      out = "<pre><code class='#{lang}'>#{html_escape(raw_data)}<code></pre>"
+      out = content_tag :code do
+        content_tag :pre do
+          Albino.new( raw_data, lang.to_sym, :html ).colorize( :O => "encoding=utf8,nowrap=True" )
+        end
+      end
     when "image"
       # TODO use url_for here
       out = "<img src='/#{page.id}/#{part_name}'>"

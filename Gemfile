@@ -9,6 +9,7 @@ gem 'haml'
 gem 'mime-types', :require => 'mime/types'
 gem 'rdiscount'
 gem 'RedCloth'
+gem 'albino'
 
 group :development, :test do
   gem 'ZenTest'
