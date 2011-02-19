@@ -15,6 +15,7 @@ group :development, :test do
   gem 'autotest'
   gem 'autotest-fsevent' if RUBY_PLATFORM.downcase.include?("darwin") # OS X only
   gem 'autotest-rails'
+  gem 'awesome_print'
   gem 'capybara'
   gem 'cucumber-rails'
   gem 'launchy'
