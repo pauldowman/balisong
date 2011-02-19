@@ -25,7 +25,6 @@ Feature: Home page
     Then I should see the following list of links with css id "recent_posts":
       | Scotch  | /2010/09/01/scotch  |
       | Whiskey | /2010/08/01/whiskey |
-      | Rye     | /rye                |
 
   Scenario: Display a list of all categories on home page.
     Given the following pages:
