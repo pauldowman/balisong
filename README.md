@@ -179,6 +179,7 @@ Contributors
 ------------
 
 * [Paul Dowman](http://pauldowman.com/about) ([@pauldowman](http://twitter.com/pauldowman))
+* [Gianni Chiappetta](http://gf3.ca/) ([@gf3](http://twitter.com/gf3))
 
 
 To do
