@@ -129,6 +129,10 @@ Ruby code:
 
     {{ whiskey.rb | code(ruby) }}
 
+Only specific lines from a source code file:
+
+    {{ whiskey.rb | code(ruby) }}
+
 Plain text files can be rendered in &lt;pre&gt; blocks:
 
     {{ makersmark.txt | text }}

@@ -9,13 +9,13 @@ module PagesHelper
   def render_part(page, part_name, formatter)
     if formatter.nil?
       formatter = Page.type(part_name)
-      formatter_arg = nil
+      formatter_args = nil
     elsif formatter =~ /(.*)\(([^\)]+)\)?/
       formatter = $1
-      formatter_arg = $2
+      formatter_args = $2
     else
       formatter = formatter
-      formatter_arg = nil
+      formatter_args = nil
     end
 
     raw_data = page.blobs[part_name]
@@ -23,12 +23,12 @@ module PagesHelper
 
     # Render sub-parts recursively
     unless @@skip.include? formatter.to_sym
-      # match {{ file.md }} or {{file.rb | code(ruby)}}, etc.
-      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[\w\.-]*\)?)?\s*\}\}/
+      # match {{ file.md }} or {{file.rb | code(ruby)}}, or {{file.rb | code(ruby, 2-4)}}, etc.
+      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[^\(\}]*\)?)?\s*\}\}/
       raw_data = raw_data.gsub(regex) {|match| render_part(page, $1, $2) }
     end
 
-    Rails.logger.info "Rendering part: #{page}/#{part_name} with formatter #{formatter} (with arg: #{formatter_arg})"
+    Rails.logger.info "Rendering part: #{page}/#{part_name} with formatter #{formatter} (with args: #{formatter_args})"
 
     # these should be extracted somewhere to be extensible
     case formatter
@@ -41,7 +41,18 @@ module PagesHelper
     when "text"
       out = "<pre>#{html_escape(raw_data)}</pre>"
     when "code"
-      lang = formatter_arg || Page.type(part_name)
+      if formatter_args =~ /(.*),\s*(\d+)-(\d+)/
+        # Only render specified line range of the content
+        lang = $1
+        first_line = $2.to_i
+        last_line = $3.to_i
+        range = (first_line-1..last_line-1)
+        raw_data = raw_data.lines.to_a[range].join
+      elsif formatter_args
+        lang = formatter_args
+      else
+        lang = Page.type(part_name)
+      end
       out = "<pre class='brush: #{lang}'>#{html_escape(raw_data)}</pre>"
     when "image"
       # TODO use url_for here

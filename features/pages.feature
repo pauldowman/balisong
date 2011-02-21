@@ -96,7 +96,32 @@ Feature: Pages
       """
     When I go to the path "/rubytest"
     Then I should see "def wtf" within "pre"
-    Then I should see "yay, the < and > were escaped properly" within "pre"
+    And I should see "yay, the < and > were escaped properly" within "pre"
+    
+
+  Scenario: Page with only specified lines of a ruby file rendered as source code
+    Given the following pages:
+      | title     | id         |
+      | Ruby Test | rubytest   |
+    And the page with id "rubytest" has part "main.md" with content:
+      """
+      Here is some sample Ruby code:
+      {{sample.rb | code(ruby, 2-4)}}
+      """
+    And the page with id "rubytest" has part "sample.rb" with content:
+      """
+      def wtf(x)
+        x = 1
+        y = 2
+        z = 3
+      end
+      """
+    When I go to the path "/rubytest"
+    Then I should see "x = 1" within "pre"
+    And I should see "y = 2" within "pre"
+    And I should see "z = 3" within "pre"
+    And I should not see "def wtf(x)"
+    And I should not see "end"
     
 
     Scenario: Page with text file part
