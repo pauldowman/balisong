@@ -38,7 +38,6 @@ GEM
     autotest-rails (4.1.0)
       ZenTest
     awesome_print (0.3.2)
-    backports (2.0.2)
     builder (2.1.2)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
@@ -151,7 +150,6 @@ DEPENDENCIES
   autotest-fsevent
   autotest-rails
   awesome_print
-  backports
   capybara
   cucumber-rails
   gitmodel

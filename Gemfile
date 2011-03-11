@@ -4,7 +4,6 @@ source :rubygems
 
 gem 'rails', '>=3.0.0'
 
-gem 'backports', :platforms => 'ruby_18'
 gem 'gitmodel'
 gem 'haml'
 gem 'mime-types', :require => 'mime/types'
