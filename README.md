@@ -175,6 +175,12 @@ Here are some attributes that you can use in the attributes.json file:
 * `site_menu_position`: An integer. If this is set, it determines where this page appears in the site menu (navigation links that appear on all pages).
 
 
+Developing
+----------
+
+Contributions (with tests!) are welcome. Balisong uses Cucumber and RSpec. To run the tests, do `rake spec cucumber` or `autotest`.
+
+
 Contributors
 ------------
 
