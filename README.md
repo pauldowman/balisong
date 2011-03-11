@@ -191,5 +191,5 @@ To do
 * Atom feed
 * Comment support
 * Search for TODO in the code and Cucumber features tagged with @wip
-* Performance: object caching, HTTP caching
+* Performance: object caching, HTTP caching, GitModel needs query support
 
