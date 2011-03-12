@@ -4,12 +4,14 @@ source :rubygems
 
 gem 'rails', '>=3.0.0'
 
+gem 'RedCloth'
 gem 'backports', :platforms => 'ruby_18'
+gem 'compass'
 gem 'gitmodel'
 gem 'haml'
+gem 'html5-boilerplate'
 gem 'mime-types', :require => 'mime/types'
 gem 'rdiscount'
-gem 'RedCloth'
 
 group :development, :test do
   gem 'ZenTest'

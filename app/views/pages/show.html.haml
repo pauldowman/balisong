@@ -1,5 +1,7 @@
 - @title = @page.title
 
+- render :partial => "syntax_highlighter"
+
 - if @page.categories && @page.categories.any?
   Categories:
   %ul#categories
