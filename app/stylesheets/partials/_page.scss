@@ -1,4 +1,6 @@
 @import "compass/css3";
+@import "eleven40";
+@import "partials/code";
 
 //-----------------------------------------------
 // The following html5-boilerplate styles should
@@ -15,7 +17,28 @@ body, select, input, textarea {
 h1, h2, h3, h4, h5, h6 {
   // Bold might not be the best choice if you are
   // embedding a @font-face that's already bold
+  font-family: $heading-font-family;
   font-weight: bold;
+}
+
+h1 {
+  @include font-size(32px);
+}
+
+h2 {
+  @include font-size(24px);
+}
+
+p {
+  margin-bottom: 13px;
+}
+
+code {
+  font-family: $code-font-family;
+}
+
+em {
+  font-style: italic;
 }
 
 a, a:active, a:visited { color: $link-color; }
@@ -41,17 +64,73 @@ input:invalid, textarea:invalid {
 .no-boxshadow input:invalid,
 .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 
+ul {
+ margin-bottom: 12px;
+}
+
 
 //-----------------------------------
 // Add your own custom styles below
 //-----------------------------------
 
-body {}
+body {
+  font-family: $base-font-family;
+}
 
-#container {}
+#container {
+  @include eleven40-container;
+}
 
-header {}
+#header-container {
+  @include eleven40-row;
+  header {
+    @include eleven40-twelvecol;
+    @include eleven40-last;
+  }
+}
 
-#main {}
+#inner-container {
+  @include eleven40-row;
+  #menu {
+    @include eleven40-threecol;
+    font-family: $heading-font-family;
+    ul {
+      @include font-size(12px);
+      margin-bottom: 18px;
+    }
+  }
 
-footer {}
+  #main {
+    @include eleven40-ninecol;
+    @include eleven40-last;
+    margin-bottom: 18px;
+    pre {
+      @include code;
+    }
+    time {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+#site-title {
+  margin-bottom: 12px;
+  #tagline {
+    font-weight: normal;
+  }
+}
+
+#footer-container {
+  @include eleven40-row;
+  #footer {
+    @include eleven40-twelvecol;
+    @include eleven40-last;
+    font-family: $heading-font-family;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+}
+
+.content {
+  margin-bottom: 18px;
+}

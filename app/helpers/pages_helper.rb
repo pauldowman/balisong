@@ -44,7 +44,7 @@ module PagesHelper
       else
         lang = Page.type(part_name)
       end
-      out = "<pre class='brush: #{lang}; first-line: #{first_line || 1}'>#{html_escape(raw_data)}</pre>"
+      out = "<pre class='brush: #{lang}; first-line: #{first_line || 1} toolbar: false;'>#{html_escape(raw_data)}</pre>"
     when "image"
       # TODO use url_for here
       out = "<img src='/#{page.id}/#{part_name}'>"

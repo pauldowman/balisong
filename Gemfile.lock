@@ -65,6 +65,8 @@ GEM
       rack-test (>= 0.5.7)
     culerity (0.2.15)
     diff-lcs (1.1.2)
+    eleven40 (1.2)
+      compass (>= 0.10.0.rc3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     ffi (1.0.7)
@@ -157,6 +159,7 @@ DEPENDENCIES
   capybara
   compass
   cucumber-rails
+  eleven40
   gitmodel
   haml
   html5-boilerplate

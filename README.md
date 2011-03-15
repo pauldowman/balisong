@@ -48,6 +48,11 @@ Features
 * Easy to hack on and customize
   * Balisong is a Rails 3 app using Haml and Sass
   * Good test coverage with Cucumber and Rspec
+* Good design foundation
+  * [Haml](http://haml-lang.com/) (can be easily replaced or extended with regular ERB)
+  * [SCSS](http://sass-lang.com/) with [Compass](http://compass-style.org/)
+  * HTML 5, based on [HTML 5 boilerplate](http://html5boilerplate.com/) (as a [Compass extension](https://github.com/sporkd/compass-html5-boilerplate))
+  * [1140px grid as a Compass extension](https://github.com/zombor/eleven40-compass)
 
 
 Customization
@@ -56,7 +61,7 @@ Customization
 It's a standard Rails app, but you'll want to customize it. The best way to do that is to fork this repo on GitHub. Please do send pull requests for general changes.
 
 Obviously you'll want to customize the look, which is done by editing the files
-under /app/views and the files under /public.  
+under /app/views, /app/stylesheets, and the files under /public.  
 
 There are also some important configuration options that need changing, such as
 the location of the git repo that contains the posts and pages. Search for

@@ -6,4 +6,5 @@ capybara-*.html
 db/*.sqlite3
 log/*.log
 public/stylesheets/compiled
+tmp/*
 tmp/**/*

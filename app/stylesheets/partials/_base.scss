@@ -1,10 +1,11 @@
 // This file must be imported before loading html5-boilerplate
 
-$base-font-family: unquote('sans-serif');  // default font-family
+$base-font-family: 'Times New Roman','Times',serif;  // default font-family
+$heading-font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
 
-$base-font-size: 13px;  // default font-size for YUI fonts
+$base-font-size: 15px;  // default font-size for YUI fonts
 
-$base-line-height: 1.231;  // default line-height for YUI fonts
+$base-line-height: 1.5;  // default line-height for YUI fonts
 
 $font-color: #444;
 
@@ -20,4 +21,4 @@ $selected-font-color: #fff;  // color for selected text
 
 $selected-background-color: #ff5E99;  // bg-color for selected text
 
-$list-left-margin: 2em;  // left margin for ul an ol
+$list-left-margin: 24px;  // left margin for ul an ol

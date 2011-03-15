@@ -1,15 +1,13 @@
-%h1
-  Homepage
+%h3
+  About this site
+%p
+  Welcome. This site is powered by the 
+  = link_to "Balisong", "https://github.com/pauldowman/balisong"
+  blogging app.
 
-Some recent posts:
+%h3 Some recent posts:
 %ul#recent_posts
   - @recent_posts.each do |p|
     %li
       = link_to p.title, '/' + Page.urlify(p.id)
-
-All categories:
-%ul#all_categories
-  - @categories.each do |cat|
-    %li
-      = link_to cat, '/category/' + cat
 

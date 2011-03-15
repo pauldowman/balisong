@@ -2,21 +2,23 @@
 
 - render :partial => "syntax_highlighter"
 
-- if @page.categories && @page.categories.any?
-  Categories:
-  %ul#categories
-    - @page.categories.sort.each do |c|
-      %li
-        = link_to c, "/category/#{c}"
+%article
+  %header
+    %h1
+      = @title
+      
+    - if @page.date
+      %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
+        Posted on
+        = @page.date.strftime("%B %e, %Y")
 
-- if @page.date
-  #date
-    Posted at:
-    = @page.date
+  .content{:id => "page-#{@page.id}"}
+    ~ raw render_part(@page, @page.main_part, @formatter)
 
-%h1
-  = @title
-	
-#page
-  ~ raw render_part(@page, @page.main_part, @formatter)
+  %footer
+
+    - if @page.categories && @page.categories.any?
+      #categories
+        Categories:
+        = raw @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
 

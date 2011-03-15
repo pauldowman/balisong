@@ -11,7 +11,7 @@
       Balisong
     - else
       = @title
-    
+      (Balisong)
     
   %meta{ :content => "", :name => "description" }/
   %meta{ :content => "", :name => "author" }/
@@ -23,7 +23,14 @@
   -# %link{ :href => "/favicon.ico", :rel => "shortcut icon" }/
   -# %link{ :href => "/apple-touch-icon.png", :rel => "apple-touch-icon" }/
   
-  = render :partial => 'layouts/stylesheets'
+  -# CSS: implied media="all"
+  = stylesheet_link_tag 'compiled/style', :media => 'all'
+
+  -# Uncomment if you are specifically targeting less enabled mobile browsers
+  -#= stylesheet_link_tag 'commpiled/handheld', :media => 'handheld'
+
+  -# Append your own using content_for :stylesheets
+  = yield :stylesheets
   
   -# All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects
   = javascript_include_tag 'modernizr.min'
