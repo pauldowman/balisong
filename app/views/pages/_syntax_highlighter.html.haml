@@ -6,6 +6,11 @@
   = javascript_include_tag "/lib/syntaxhighlighter/scripts/shAutoloader.js"
   %script{:type => "text/javascript"}
     SyntaxHighlighter.autoloader(
+    'bash shell /lib/syntaxhighlighter/scripts/shBrushBash.js',
+    'groovy /lib/syntaxhighlighter/scripts/shBrushGroovy.js',
+    'plain text /lib/syntaxhighlighter/scripts/shBrushPlain.js',
+    'sql /lib/syntaxhighlighter/scripts/shBrushSql.js',
+    'java /lib/syntaxhighlighter/scripts/shBrushJava.js',
     'js jscript javascript /lib/syntaxhighlighter/scripts/shBrushJScript.js',
     'ruby /lib/syntaxhighlighter/scripts/shBrushRuby.js',
     'xml xhtml xslt html xhtml /lib/syntaxhighlighter/scripts/shBrushXml.js'
