@@ -1,7 +1,5 @@
 module PagesHelper
 
-  @@skip = [ :image, :download ]
-
   # Render a part as HTML. Name is the filename of the part, and formatter is
   # the name of the formatter that will be used to render the part as HTML,
   # something like "code" or "html" or "code(ruby)".
@@ -18,17 +16,10 @@ module PagesHelper
       formatter_args = nil
     end
 
+    Rails.logger.info "Rendering part: #{page}/#{part_name} with formatter #{formatter} (with args: #{formatter_args})"
+
     raw_data = page.blobs[part_name]
     raise "Can't find part '#{part_name}'" unless raw_data
-
-    # Render sub-parts recursively
-    unless @@skip.include? formatter.to_sym
-      # match {{ file.md }} or {{file.rb | code(ruby)}}, or {{file.rb | code(ruby, 2-4)}}, etc.
-      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[^\(\}]*\)?)?\s*\}\}/
-      raw_data = raw_data.gsub(regex) {|match| render_part(page, $1, $2) }
-    end
-
-    Rails.logger.info "Rendering part: #{page}/#{part_name} with formatter #{formatter} (with args: #{formatter_args})"
 
     # these should be extracted somewhere to be extensible
     case formatter
@@ -57,11 +48,20 @@ module PagesHelper
     when "image"
       # TODO use url_for here
       out = "<img src='/#{page.id}/#{part_name}'>"
+      skip_sub_render = true
     when "download"
       # TODO use url_for here
       out = link_to(part_name, "/#{page.id}/#{part_name}?download=true")
+      skip_sub_render = true
     else
       raise "unknown formatter: #{formatter}"
+    end
+
+    # Render sub-parts recursively
+    unless skip_sub_render
+      # match {{ file.md }} or {{file.rb | code(ruby)}}, or {{file.rb | code(ruby, 2-4)}}, etc.
+      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[^\(\}]*\)?)?\s*\}\}/
+      out = out.gsub(regex) {|match| render_part(page, $1, $2) }
     end
 
     return out
