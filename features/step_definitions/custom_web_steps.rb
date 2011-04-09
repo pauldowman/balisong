@@ -38,3 +38,9 @@ Then /^I should see the following list of links with css id "(.+)":$/ do |id, ta
   table.diff!(tableish("ul##{id} li a", lambda{|el| [el, el.attribute('href')]}))
 end
 
+Then /^(?:|I )should see "([^"]*)"(?: within (.*))?$/ do |text, selector|
+  with_scope(selector) do
+    page.should have_content(text)
+  end
+end
+
