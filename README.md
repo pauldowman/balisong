@@ -13,6 +13,8 @@ Balisong believes that:
   you need some server-side functionality.
 * Content should be separate from the app and should be deployed/updated
   separately.
+* Content should be able to be versioned and managed as easily as source code
+  already is.
 
 
 Features
@@ -196,11 +198,13 @@ Contributors
 To do
 -----
 
+* Performance! Right now it is SLOOOOOW.
+  * GitModel needs query support.
+  * object caching, HTTP caching.
 * Documentation
 * A simple but nice-looking default design
   * HTML 5
 * Atom feed
 * Comment support
 * Search for TODO in the code and Cucumber features tagged with @wip
-* Performance: object caching, HTTP caching, GitModel needs query support
 
