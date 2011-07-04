@@ -9,7 +9,6 @@
       
     - if @page.date
       %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
-        Posted on
         = @page.date.strftime("%B %e, %Y")
 
   .content{:id => "page-#{@page.id}"}

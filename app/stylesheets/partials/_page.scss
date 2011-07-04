@@ -64,7 +64,8 @@ input:invalid, textarea:invalid {
 .no-boxshadow input:invalid,
 .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 
-ul {
+ol, ul {
+ padding-left: 1em; // bullets inside the box
  margin-bottom: 12px;
 }
 
@@ -107,8 +108,12 @@ body {
     pre {
       @include code;
     }
-    time {
-      margin-bottom: 12px;
+    header {
+      padding-bottom: 14px;
+      time {
+        @include font-size(12px);  // approx 85% when base-font-size eq 13px
+        font-family: $heading-font-family;
+      }
     }
   }
 }
