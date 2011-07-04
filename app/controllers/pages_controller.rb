@@ -29,13 +29,11 @@ class PagesController < ApplicationController
     date_range = params[:date_range]
 
     if category
-      @title = category
+      @title = "All posts in category \"#{category}\""
       @pages = Page.in_category(category)
     elsif date_range
-      @title = "All posts in \"#{date_range}\""
+      @title = "All posts in date range \"#{date_range}\""
       @pages = Page.in_date_range(date_range)
     end
-
-    @pages = @pages.sort {|a,b| (b.date || Date.new) <=> (a.date || Date.new) }
   end
 end

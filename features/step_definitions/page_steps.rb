@@ -12,19 +12,19 @@ Given /the following pages:$/ do |pages|
   Then %{there should be #{pages.hashes.length} pages}
 end
 
-And /the page with id "(.+)" has part "(.+)" with content "(.+)"$/ do | id, part_name, content |
+Given /the page with id "(.+)" has part "(.+)" with content "(.+)"$/ do | id, part_name, content |
   p = Page.find(id)
   p.blobs[part_name] = content
   p.save!
 end
 
-And /the page with id "(.+)" has part "(.+)" with content:$/ do | id, part_name, content |
+Given /the page with id "(.+)" has part "(.+)" with content:$/ do | id, part_name, content |
   p = Page.find(id)
   p.blobs[part_name] = content
   p.save!
 end
 
-And /the page with id "(.+)" has part "(.+)" with content from file "(.+)"$/ do | id, part_name, filename |
+Given /the page with id "(.+)" has part "(.+)" with content from file "(.+)"$/ do | id, part_name, filename |
   full_path = File.join(Rails.root, "features", "bindata", filename)
   p = Page.find(id)
   p.blobs[part_name] = open(full_path, "rb") {|io| io.read }

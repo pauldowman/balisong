@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :populate_categories
 
   def populate_site_menu
-    @site_menu = Page.find_all.select{|p| p.site_menu_position}.sort{|a,b| a.site_menu_position <=> b.site_menu_position}
+    @site_menu = Page.find_all(:site_menu_position => lambda{|x| !x.nil?}, :order_by => :site_menu_position, :order => :asc)
   end
 
   def populate_categories

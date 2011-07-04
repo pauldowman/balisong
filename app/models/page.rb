@@ -27,32 +27,19 @@ class Page
 
   # return all Page objects that have the given category in the categories array
   def self.in_category(category)
-    results = []
-    find_all.each do |o|
-      results << o if o.categories.include?(category)
-    end
-    return results
+    return find_all(:categories => lambda{|cats| cats.include?(category)}, :order_by => :id, :order => :desc)
   end
 
   # return all Page objects that have a date that matches the given date range.
   # A date range is a string that matches 'YYYY/MM/DD' or 'YYYY/MM' or just
   # 'YYYY'
   def self.in_date_range(date_range)
-    year, month, day = date_range.split('/').map{|el| el.to_i}
-
-    results = []
-    find_all.each do |o|
-      if o.date && year == o.date.year && (month.nil? || month == o.date.month) && (day.nil? || day == o.date.day)
-        results << o
-      end
-    end
-    return results
+    pattern = date_range.gsub(/\//, '-')
+    return find_all(:id => lambda{|id| id =~ /^#{pattern}/}, :order_by => :id, :order => :desc)
   end
 
   def self.all_categories
-    categories = []
-    find_all.each {|page| categories += page.categories}
-    return categories.uniq.sort
+    @categories = Page.all_values_for_attr(:categories).flatten.sort.uniq
   end
 
   # convert an id to the format with slashes that's used in url's

@@ -9,10 +9,11 @@ Feature: Page indexes
       | Bourbon | A blog post about Bourbon | 2010-08-01-bourbon| Bourbon, Alcohol                           |
       | Scotch  | A blog post about Scotch  | 2010-10-01-scotch | Scotch, Bourbon, Rye, Bourbon rye, Alcohol |
       | Rye     | Something about Rye       | rye               | Rye, Alcohol                               |
+    And The GitModel database is indexed
     When I go to the path "/category/Rye"
     Then I should see the following list of links with css id "pages":
-      | Scotch | /2010/10/01/scotch |
       | Rye    | /rye               |
+      | Scotch | /2010/10/01/scotch |
 
     When I go to the path "/category/Bourbon"
     Then I should see the following list of links with css id "pages":
@@ -29,19 +30,20 @@ Feature: Page indexes
 
     When I go to the path "/category/Alcohol"
     Then I should see the following list of links with css id "pages":
+      | Rye     | /rye                 |
       | Scotch  | /2010/10/01/scotch   |
       | Bourbon | /2010/08/01/bourbon  |
-      | Rye     | /rye                 |
 
 
   Scenario: List all posts in a date range
     Given the following pages:
-      | title   | body                      | id                 |
-      | Bourbon | A blog post about Bourbon | 2010-08-01-bourbon |
-      | Rye     | A blog post about Rye     | 2010-08-11-rye     |
-      | Malt    | A blog post about Malt    | 2009-10-01-malt    |
-      | Scotch  | A blog post about Scotch  | 2010-10-01-scotch  |
-      | Rye     | Something about Rye       | rye                |
+      | title   | body                      | id                 | categories |
+      | Bourbon | A blog post about Bourbon | 2010-08-01-bourbon |            |
+      | Rye     | A blog post about Rye     | 2010-08-11-rye     |            |
+      | Malt    | A blog post about Malt    | 2009-10-01-malt    |            |
+      | Scotch  | A blog post about Scotch  | 2010-10-01-scotch  |            |
+      | Rye     | Something about Rye       | rye                |            |
+    And The GitModel database is indexed
     When I go to the path "/2010"
     Then I should see the following list of links with css id "pages":
       | Scotch  | /2010/10/01/scotch   |

@@ -9,6 +9,7 @@ Feature: Home page
       | Whiskey | A blog post about Whiskey | 2010-08-01-whiskey |                       |
       | Scotch  | Something about Scotch    | 2010-09-01-scotch  |                       |
       | Rye     | A blog post about Rye     | 2010-10-01-rye     |                       |
+    And The GitModel database is indexed
     When I go to the homepage
     Then I should see the following list of links with css id "recent_posts":
       | Rye     | /2010/10/01/rye     |
@@ -21,6 +22,7 @@ Feature: Home page
       | Whiskey | A blog post about Whiskey | 2010-08-01-whiskey |                       |
       | Scotch  | Something about Scotch    | 2010-09-01-scotch  |                       |
       | Rye     | A page (no date in id)    | rye                |                       |
+    And The GitModel database is indexed
     When I go to the homepage
     Then I should see the following list of links with css id "recent_posts":
       | Scotch  | /2010/09/01/scotch  |
@@ -32,6 +34,7 @@ Feature: Home page
       | Whiskey | A blog post about Whiskey | 2010-08-01-whiskey | Whiskey, Alcohol        |
       | Scotch  | Something about Scotch    | 2010-09-01-scotch  | Scotch, Alcohol         |
       | Rye     | A blog post about Rye     | 2010-10-01-rye     | Rye, Alcohol, Malt |
+    And The GitModel database is indexed
     When I go to the homepage
     Then I should see the following list of links with css id "all_categories":
       | Alcohol | /category/Alcohol   |
