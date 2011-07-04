@@ -7,8 +7,11 @@
       #header-container
         %header#header
           #site-title
-            %h1= link_to "A Balisong blog", root_url
-            %h4#tagline Another coder's blog powered by Balisong
+            %h1
+              = link_to BALISONG["site_title"], root_url
+            - unless BALISONG["tagline"].blank?
+              %h4#tagline 
+                = BALISONG["tagline"]
 
         #flash
           - flash.each do |key, value|

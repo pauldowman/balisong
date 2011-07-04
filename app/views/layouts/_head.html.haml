@@ -8,10 +8,9 @@
   
   %title
     -if @title.blank?
-      Balisong
+      = BALISONG["site_title"]
     - else
-      = @title
-      (Balisong)
+      #{@title} ➜ #{BALISONG["site_title"]}
     
   %meta{ :content => "", :name => "description" }/
   %meta{ :content => "", :name => "author" }/
