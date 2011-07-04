@@ -1,0 +1,1 @@
+GitModel.logger = Rails.logger
