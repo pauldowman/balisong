@@ -5,6 +5,11 @@ namespace :balisong do
       puts "Creating content database in #{GitModel.db_root}..."
       GitModel.create_db!
     end
+
+    desc "Create/update GitModel indexes (required after each change to the data)"
+    task :index => :environment do
+      GitModel.index!
+    end
   end
 end
 
