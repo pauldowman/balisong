@@ -18,6 +18,8 @@
               = BALISONG["tagline"]
         %nav
           %ul#site-menu
+            %li
+              =link_to "Home", root_url
             - @site_menu.each do |p|
               %li
                 = link_to p.title, '/' + Page.urlify(p.id)
