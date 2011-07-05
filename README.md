@@ -21,7 +21,7 @@ Features
 --------
 
 * A post or page is [simply a directory of
-  files](https://github.com/pauldowman/balisong-sample-db/tree/master/pages/foo/).
+  files](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-02-08-mysql-s3-backup).
   There's a main file (think of it as index.html, but it can be Markdown,
   Textile, HTML, whatever), plus
   included partials, image files, source code files, and downloadable files of
@@ -62,7 +62,7 @@ Customization
 
 It's a standard Rails app, but you'll want to customize it. The best way to do that is to fork this repo on GitHub. Please do send pull requests for general changes.
 
-There is [sample content](https://github.com/pauldowman/balisong-sample-db) added as a Git submodule, do `git submodule update` and it will be cloned into the balisong-content directory.
+There is [sample content](https://github.com/pauldowman/pauldowman.com-content) added as a Git submodule, do `git submodule update` and it will be cloned into the balisong-content directory.
 
 Obviously you'll want to customize the look, which is done by editing the files
 under /app/views, /app/stylesheets, and the files under /public.  
@@ -89,7 +89,10 @@ Format of pages and posts
 
 The content database (i.e. the Git repo where the page content is stored) has a directory named "pages" at it's root, and inside that it has a directory for each page or post.
 
-There's an example at [https://github.com/pauldowman/balisong-sample-db](https://github.com/pauldowman/balisong-sample-db)
+For an example, see the [content for pauldowman.com](https://github.com/pauldowman/pauldowman.com-content). Some notable pages to look at are:
+
+* A page with an image: [main page](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-06-30-speaking-at-futureruby/main.md), [all files](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-06-30-speaking-at-futureruby)
+* A page with embedded source code examples and downloadable files: [main page](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-02-08-mysql-s3-backup/main.md), [all files](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-02-08-mysql-s3-backup)
 
 So each page or post is a directory inside CONTENT_ROOT/pages. The directory must contain two files:
 1. A file for your article text named "main.ext" where "ext" is one of the
