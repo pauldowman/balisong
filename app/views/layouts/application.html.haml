@@ -12,13 +12,17 @@
             - unless BALISONG["tagline"].blank?
               %h4#tagline 
                 = BALISONG["tagline"]
-
         #flash
           - flash.each do |key, value|
             %div{ :title => key.to_s.humanize, :class => key }
               %p= value
 
+      %hr
+
       #inner-container
+        #main
+          = yield
+
         %nav#menu
           %h3 Site menu
           %ul#site-menu
@@ -32,9 +36,6 @@
               %li
                 = link_to cat, '/category/' + cat
         
-        #main
-          = yield
-
       #footer-container
         %footer#footer
           %small

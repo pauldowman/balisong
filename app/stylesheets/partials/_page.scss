@@ -41,7 +41,10 @@ em {
   font-style: italic;
 }
 
-a, a:active, a:visited { color: $link-color; }
+a, a:active, a:visited {
+  color: $link-color;
+  text-decoration: none;
+}
 a:hover { color: $link-hover-color; }
 
 strong, th {
@@ -65,7 +68,7 @@ input:invalid, textarea:invalid {
 .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 
 ol, ul {
- padding-left: 1em; // bullets inside the box
+ padding-left: 22px; // bullets inside the box
  margin-bottom: 12px;
 }
 
@@ -94,6 +97,7 @@ body {
   @include eleven40-row;
   #menu {
     @include eleven40-threecol;
+    @include eleven40-last;
     font-family: $heading-font-family;
     ul {
       @include font-size(12px);
@@ -103,7 +107,6 @@ body {
 
   #main {
     @include eleven40-ninecol;
-    @include eleven40-last;
     margin-bottom: 18px;
     pre {
       @include code;
@@ -120,6 +123,13 @@ body {
 
 #site-title {
   margin-bottom: 12px;
+  h1 {
+    @include font-size(48px);
+    a {
+      color: $font-color;
+      text-shadow: 1px 1px 0 #888;
+    }
+  }
   #tagline {
     font-weight: normal;
   }
