@@ -2,10 +2,9 @@
 @import "eleven40";
 @import "partials/code";
 
-//-----------------------------------------------
-// The following html5-boilerplate styles should
-// probably be customized for each site
-//-----------------------------------------------
+//---------------------------------------------------
+// Default styles that should take effect everywhere
+//---------------------------------------------------
 
 body, select, input, textarea {
   color: $font-color;
@@ -72,80 +71,108 @@ ol, ul {
  margin-bottom: 12px;
 }
 
-
-//-----------------------------------
-// Add your own custom styles below
-//-----------------------------------
-
 body {
   font-family: $base-font-family;
 }
 
-#container {
+//---------------------------------------
+// Page header
+//---------------------------------------
+
+#page-header {
   @include eleven40-container;
-}
 
-#header-container {
-  @include eleven40-row;
-  header {
-    @include eleven40-twelvecol;
-    @include eleven40-last;
-  }
-}
-
-#inner-container {
-  @include eleven40-row;
-  #menu {
-    @include eleven40-threecol;
-    @include eleven40-last;
-    font-family: $heading-font-family;
-    ul {
-      @include font-size(12px);
-      margin-bottom: 18px;
-    }
+  #flash {
+    @include eleven40-row;
   }
 
-  #main {
-    @include eleven40-ninecol;
+  #page-header-main {
+    @include eleven40-row;
+    border-bottom: 1px solid #DDD;
     margin-bottom: 18px;
-    pre {
-      @include code;
+
+    #site-title {
+      @include eleven40-sevencol;
+      margin-bottom: 12px;
+      h1 {
+        @include font-size(48px);
+        a {
+          color: $font-color;
+          text-shadow: 1px 1px 0 #888;
+        }
+      }
+      #tagline {
+        font-weight: normal;
+      }
     }
-    header {
-      padding-bottom: 14px;
-      time {
-        @include font-size(12px);  // approx 85% when base-font-size eq 13px
+
+    nav {
+      @include eleven40-fivecol;
+      @include eleven40-last;
+      ul#site-menu {
         font-family: $heading-font-family;
+        text-transform: uppercase;
+        padding: 48px 0 0;
+        text-align: right;
+        list-style-type: none;
+        li {
+          display: inline;
+          margin: none;
+          padding-left: 12px;
+          padding-right: 12px;
+          border-right: 1px dotted #888
+        }
       }
     }
   }
 }
 
-#site-title {
-  margin-bottom: 12px;
-  h1 {
-    @include font-size(48px);
-    a {
-      color: $font-color;
-      text-shadow: 1px 1px 0 #888;
+//---------------------------------------
+// Main section
+//---------------------------------------
+
+#main {
+  @include eleven40-container;
+  #content {
+    @include eleven40-ninecol;
+    margin-bottom: 18px;
+    .page-content {
+      margin-bottom: 18px;
+      pre {
+        @include code;
+      }
+    }
+    header {
+      padding-bottom: 14px;
+      time {
+        @include font-size(12px);
+        font-family: $heading-font-family;
+      }
     }
   }
-  #tagline {
-    font-weight: normal;
-  }
-}
-
-#footer-container {
-  @include eleven40-row;
-  #footer {
-    @include eleven40-twelvecol;
+  #side-menu {
+    @include eleven40-threecol;
     @include eleven40-last;
+    @include font-size(12px);
     font-family: $heading-font-family;
-    text-align: center;
     margin-bottom: 18px;
+    ul {
+      list-style-type: none;
+    }
   }
 }
 
-.content {
+
+//---------------------------------------
+// Page footer
+//---------------------------------------
+
+#footer {
+  @include eleven40-container;
+  @include eleven40-twelvecol;
+  @include eleven40-last;
+  font-family: $heading-font-family;
+  text-align: center;
   margin-bottom: 18px;
 }
+

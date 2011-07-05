@@ -11,7 +11,7 @@
       %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
         = @page.date.strftime("%B %e, %Y")
 
-  .content{:id => "page-#{@page.id}"}
+  .page-content{:id => "page-#{@page.id}"}
     ~ raw render_part(@page, @page.main_part, @formatter)
 
   %footer

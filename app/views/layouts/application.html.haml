@@ -3,47 +3,43 @@
 -ie_html :class => 'no-js' do
   = render :partial => 'layouts/head'
   %body{ :lang => 'en', :class => "#{controller.controller_name}" }
-    #container
-      #header-container
-        %header#header
-          #site-title
-            %h1
-              = link_to BALISONG["site_title"], root_url
-            - unless BALISONG["tagline"].blank?
-              %h4#tagline 
-                = BALISONG["tagline"]
-        #flash
-          - flash.each do |key, value|
-            %div{ :title => key.to_s.humanize, :class => key }
-              %p= value
+    %header#page-header
+      #flash
+        - flash.each do |key, value|
+          %div{ :title => key.to_s.humanize, :class => key }
+            %p= value
 
-      %hr
-
-      #inner-container
-        #main
-          = yield
-
-        %nav#menu
-          %h3 Site menu
+      #page-header-main
+        #site-title
+          %h1
+            = link_to BALISONG["site_title"], root_url
+          - unless BALISONG["tagline"].blank?
+            %h4#tagline 
+              = BALISONG["tagline"]
+        %nav
           %ul#site-menu
             - @site_menu.each do |p|
               %li
                 = link_to p.title, '/' + Page.urlify(p.id)
-        
-          %h3 All categories
-          %ul#all_categories
-            - @categories.each do |cat|
-              %li
-                = link_to cat, '/category/' + cat
-        
-      #footer-container
-        %footer#footer
-          %small
-            .copyright
-              Copyright &copy; #{Date.today.year}
-            .balisong-link
-              Powered by 
-              = link_to "Balisong", "https://github.com/pauldowman/balisong"
+
+    #main
+      #content
+        = yield
+
+      %nav#side-menu
+        %h3 Categories
+        %ul#all_categories
+          - @categories.each do |cat|
+            %li
+              = link_to cat, '/category/' + cat
+      
+    %footer#footer
+      %small
+        .copyright
+          Copyright &copy; #{Date.today.year}
+        .balisong-link
+          Powered by 
+          = link_to "Balisong", "https://github.com/pauldowman/balisong"
 
       -# Javascript at the bottom for fast page loading
       = render :partial => 'layouts/javascripts'
