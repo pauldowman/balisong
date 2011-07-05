@@ -62,6 +62,8 @@ Customization
 
 It's a standard Rails app, but you'll want to customize it. The best way to do that is to fork this repo on GitHub. Please do send pull requests for general changes.
 
+There is [sample content](https://github.com/pauldowman/balisong-sample-db) added as a Git submodule, do `git submodule update` and it will be cloned into the balisong-content directory.
+
 Obviously you'll want to customize the look, which is done by editing the files
 under /app/views, /app/stylesheets, and the files under /public.  
 
@@ -185,7 +187,7 @@ Here are some attributes that you can use in the attributes.json file:
 Developing
 ----------
 
-Contributions (with tests!) are welcome. Balisong uses Cucumber and RSpec. To run the tests, do `rake spec cucumber` or `autotest`.
+Contributions (with tests!) are welcome. Balisong uses Cucumber and RSpec. To run the tests, do `rake spec cucumber` or `AUTOFEATURE=true autotest`.
 
 
 Contributors
