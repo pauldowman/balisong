@@ -9,12 +9,15 @@ Balisong::Application.routes.draw do
       :category => /[\w%]+/
     }
   
-  # PagesController#index with a date arg
+  # pagescontroller#index with a date arg
   get ':date_range',
     :to => 'pages#index',
     :constraints => {
       :date_range => /\d{4}(\/\d{2})?(\/\d{2})?/
     }
+  # pagescontroller#index with no args
+  get 'posts',
+    :to => 'pages#index'
 
   # PagesController#show with an id and optionally a part name
   get ':id(/:part)',

@@ -25,6 +25,7 @@ class PagesController < ApplicationController
   end
 
   def index
+    # TODO pagination
     category = params[:category]
     date_range = params[:date_range]
 
@@ -34,6 +35,9 @@ class PagesController < ApplicationController
     elsif date_range
       @title = "All posts in date range \"#{date_range}\""
       @pages = Page.in_date_range(date_range)
+    else
+      @title = "All posts"
+      @pages = Page.all_posts
     end
   end
 end

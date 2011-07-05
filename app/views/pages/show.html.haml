@@ -7,17 +7,18 @@
     %h1
       = @title
       
-    - if @page.date
-      %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
-        = @page.date.strftime("%B %e, %Y")
+    - if @page.is_post?
+      .post-metadata
+        %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
+          = @page.date.strftime("%B %e, %Y")
 
   .page-content{:id => "page-#{@page.id}"}
-    ~ raw render_part(@page, @page.main_part, @formatter)
+    !~ render_part(@page, @page.main_part, @formatter)
 
   %footer
 
     - if @page.categories && @page.categories.any?
       #categories
         Categories:
-        = raw @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
+        != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
 

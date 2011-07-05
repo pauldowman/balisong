@@ -67,7 +67,6 @@ input:invalid, textarea:invalid {
 .no-boxshadow textarea:invalid { background-color: #f0dddd; }
 
 ol, ul {
- padding-left: 22px; // bullets inside the box
  margin-bottom: 12px;
 }
 
@@ -112,7 +111,7 @@ body {
       ul#site-menu {
         font-family: $heading-font-family;
         text-transform: uppercase;
-        padding: 48px 0 0;
+        padding: 32px 0 0;
         text-align: right;
         list-style-type: none;
         li {
@@ -136,18 +135,27 @@ body {
   #content {
     @include eleven40-ninecol;
     margin-bottom: 18px;
+    ul, ol {
+      padding-left: 22px; // bullets inside the box
+    }
+    header {
+      padding-bottom: 14px;
+    }
     .page-content {
       margin-bottom: 18px;
       pre {
         @include code;
       }
     }
-    header {
-      padding-bottom: 14px;
-      time {
-        @include font-size(12px);
-        font-family: $heading-font-family;
+    .post-preview {
+      p {
+        margin-bottom: 0;
       }
+      margin-bottom: 12px;
+    }
+    .post-metadata {
+      color: #888;
+      font-style: italic;
     }
   }
   #side-menu {

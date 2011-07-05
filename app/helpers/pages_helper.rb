@@ -67,5 +67,10 @@ module PagesHelper
     return out
   end
 
+  def preview_page_content(page)
+    length = 240
+    link = link_to("More...", '/' + Page.urlify(page.id))
+    strip_tags(render_part(page, page.main_part, Page.type(page.main_part))).truncate(length, :omission => "... <em>#{link}</em>").html_safe
+  end
 end
 

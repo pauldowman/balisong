@@ -17,6 +17,10 @@ class Page
     end
   end
 
+  def is_post?
+    date ? true : false
+  end
+
   # Determine the name of the main part
   def main_part
     # TODO iterate over blobs here instead of using filesystem
@@ -27,7 +31,7 @@ class Page
 
   # return all Page objects that have the given category in the categories array
   def self.in_category(category)
-    return find_all(:categories => lambda{|cats| cats.include?(category)}, :order_by => :id, :order => :desc)
+    find_all(:categories => lambda{|cats| cats.include?(category)}, :order_by => :id, :order => :desc)
   end
 
   # return all Page objects that have a date that matches the given date range.
@@ -35,7 +39,12 @@ class Page
   # 'YYYY'
   def self.in_date_range(date_range)
     pattern = date_range.gsub(/\//, '-')
-    return find_all(:id => lambda{|id| id =~ /^#{pattern}/}, :order_by => :id, :order => :desc)
+    find_all(:id => lambda{|id| id =~ /^#{pattern}/}, :order_by => :id, :order => :desc)
+  end
+
+  def self.all_posts
+    # TODO add a spec
+    find_all(:id => lambda{|id| id =~ /^(\d+-){3}/}, :order_by => :id, :order => :desc)
   end
 
   def self.all_categories
