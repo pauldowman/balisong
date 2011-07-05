@@ -12,14 +12,14 @@
       #page-header-main
         #site-title
           %h1
-            = link_to BALISONG["site_title"], root_url
+            = link_to BALISONG["site_title"], root_path
           - unless BALISONG["tagline"].blank?
             %h4#tagline 
               = BALISONG["tagline"]
         %nav
           %ul#site-menu
             %li
-              =link_to "Home", root_url
+              =link_to "Home", root_path
             - @site_menu.each do |p|
               %li
                 = link_to p.title, '/' + Page.urlify(p.id)
