@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  before_filter :populate_categories
+
   def show
     # convert '/' characters in id to '-'
     id = Page.de_urlify(params[:id])
@@ -39,5 +41,11 @@ class PagesController < ApplicationController
       @title = "All posts"
       @pages = Page.all_posts
     end
+  end
+
+  private
+
+  def populate_categories
+    @categories = Page.all_categories
   end
 end

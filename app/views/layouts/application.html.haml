@@ -3,45 +3,37 @@
 -ie_html :class => 'no-js' do
   = render :partial => 'layouts/head'
   %body{ :lang => 'en', :class => "#{controller.controller_name}" }
-    %header#page-header
-      #flash
-        - flash.each do |key, value|
-          %div{ :title => key.to_s.humanize, :class => key }
-            %p= value
+    #container
+      %header#page-header
+        #flash
+          - flash.each do |key, value|
+            %div{ :title => key.to_s.humanize, :class => key }
+              %p= value
 
-      #page-header-main
-        #site-title
-          %h1
-            = link_to BALISONG["site_title"], root_path
-          - unless BALISONG["tagline"].blank?
-            %h4#tagline 
-              = BALISONG["tagline"]
-        %nav
-          %ul#site-menu
-            %li
-              =link_to "Home", root_path
-            - @site_menu.each do |p|
+        #page-header-main
+          #site-title
+            %h1
+              = link_to BALISONG["site_title"], root_path
+            - unless BALISONG["tagline"].blank?
+              %h4#tagline 
+                = BALISONG["tagline"]
+          %nav
+            %ul#site-menu
               %li
-                = link_to p.title, '/' + Page.urlify(p.id)
+                =link_to "Home", root_path
+              - @site_menu.each do |p|
+                %li
+                  = link_to p.title, '/' + Page.urlify(p.id)
 
-    #main
-      #content
+      #main
         = yield
-
-      %nav#side-menu
-        %h3 Categories
-        %ul#all_categories
-          - @categories.each do |cat|
-            %li
-              = link_to cat, '/category/' + cat
-      
-    %footer#footer
-      %small
-        .copyright
+        
+      %footer#footer
+        .legal
           Copyright &copy; #{Date.today.year}
-        .balisong-link
+        .balisong-info
           Powered by 
           = link_to "Balisong", "https://github.com/pauldowman/balisong"
 
-      -# Javascript at the bottom for fast page loading
-      = render :partial => 'layouts/javascripts'
+    -# Javascript at the bottom for fast page loading
+    = render :partial => 'layouts/javascripts'

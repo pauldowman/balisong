@@ -15,6 +15,7 @@ Balisong::Application.routes.draw do
     :constraints => {
       :date_range => /\d{4}(\/\d{2})?(\/\d{2})?/
     }
+
   # pagescontroller#index with no args
   get 'posts',
     :to => 'pages#index'

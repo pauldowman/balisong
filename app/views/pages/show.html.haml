@@ -2,23 +2,26 @@
 
 - render :partial => "syntax_highlighter"
 
-%article
-  %header
-    %h1
-      = @title
-      
-    - if @page.is_post?
-      .post-metadata
-        %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
-          = @page.date.strftime("%B %e, %Y")
+#page
+  %article#content
+    %header
+      %h1
+        = @title
+        
+      - if @page.is_post?
+        .post-metadata
+          %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
+            = @page.date.strftime("%B %e, %Y")
 
-  .page-content{:id => "page-#{@page.id}"}
-    !~ render_part(@page, @page.main_part, @formatter)
+    .page-content{:id => "page-#{@page.id}"}
+      !~ render_part(@page, @page.main_part, @formatter)
 
-  %footer
+    %footer
 
-    - if @page.categories && @page.categories.any?
-      #categories
-        Categories:
-        != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
+      - if @page.categories && @page.categories.any?
+        #page-categories
+          Categories:
+          != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
 
+
+  = render :partial => 'menu'

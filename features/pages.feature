@@ -12,7 +12,7 @@ Feature: Pages
     When I go to the path "/whiskey"
     Then I should see "A page with no date"
     And The page title should include "Whiskey"
-    And I should see the following list of links with css id "all_categories":
+    And I should see the following list of links with css id "all-categories":
       | alcohol  | /category/alcohol  |
       | bourbon  | /category/bourbon  |
       | scotch   | /category/scotch   |
@@ -27,7 +27,7 @@ Feature: Pages
     When I go to the path "/2010/02/01/whiskey"
     Then I should see "A page with no date"
     And The page title should include "Whiskey"
-    And I should see the following list of links with css id "all_categories":
+    And I should see the following list of links with css id "all-categories":
       | alcohol | /category/alcohol |
       | bourbon | /category/bourbon |
       | scotch  | /category/scotch  |

@@ -1,0 +1,14 @@
+#page-side
+  #side-about
+    %h3 About this site 
+    %p
+      Welcome. This site is powered by the 
+      = link_to "Balisong", "https://github.com/pauldowman/balisong"
+      blogging app.
+
+  %nav
+    %h3 Categories
+    %ul#all-categories
+      - @categories.each do |cat|
+        %li
+          = link_to cat, '/category/' + cat
