@@ -21,6 +21,10 @@ module PagesHelper
     raw_data = page.blobs[part_name]
     raise "Can't find part '#{part_name}'" unless raw_data
 
+    # TODO this probably isn't the right thing to do here, figure out how
+    # GitModel can set the correct encoding on the blob
+    raw_data = raw_data.force_encoding("UTF-8")
+
     # these should be extracted somewhere to be extensible
     case formatter
     when "markdown"
