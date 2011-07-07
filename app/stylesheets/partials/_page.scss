@@ -155,6 +155,9 @@ body {
       pre {
         @include code;
       }
+      p:first-child {
+        margin-top: 10px;
+      }
       .section {
         border-bottom: 1px solid #DDD;
       }
