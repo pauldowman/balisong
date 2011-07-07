@@ -226,6 +226,13 @@ body {
   }
 }
 
+#error-404 {
+  @include eleven40-row;
+  #notfound-message {
+    @include eleven40-twelvecol;
+    @include eleven40-last;
+  }
+}
 
 //---------------------------------------
 // Page footer
