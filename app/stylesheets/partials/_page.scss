@@ -155,6 +155,9 @@ body {
       pre {
         @include code;
       }
+      .section {
+        border-bottom: 1px solid #DDD;
+      }
     }
     #recent-posts{
       @include eleven40-sixcol;
