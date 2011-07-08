@@ -38,8 +38,13 @@ class PagesController < ApplicationController
       @title = "All posts in date range \"#{date_range}\""
       @pages = Page.in_date_range(date_range)
     else
-      @title = "All posts"
-      @pages = Page.all_posts
+      @title = "Recent posts"
+      @pages = Page.recent_posts(:limit => 10)
+    end
+
+    respond_to do |format|
+      format.html
+      format.atom
     end
   end
 

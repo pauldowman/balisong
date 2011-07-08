@@ -250,13 +250,14 @@ body {
   font-family: $heading-font-family;
   @include font-size(12px);
   margin-bottom: 18px;
-  .legal {
+  .legal, .feed, .balisong-info {
     @include eleven40-twelvecol;
     @include eleven40-last;
   }
-  .balisong-info {
-    @include eleven40-twelvecol;
-    @include eleven40-last;
+  .feed {
+    a span, a img {
+      vertical-align: middle;
+    }
   }
 }
 

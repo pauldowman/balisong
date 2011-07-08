@@ -46,9 +46,15 @@ class Page
     find_all(:id => lambda{|id| id =~ /^#{pattern}/}, :order_by => :id, :order => :desc)
   end
 
-  def self.all_posts
+  def self.recent_posts(options = {})
     # TODO add a spec
-    find_all(:id => lambda{|id| id =~ /^(\d+-){3}/}, :order_by => :id, :order => :desc)
+    options = {
+      :id => lambda{|id| id =~ /^(\d+-){3}/},
+      :order_by => :id, :order => :desc,
+      :limit => 20
+    }.merge(options)
+
+    find_all(options)
   end
 
   def self.all_categories

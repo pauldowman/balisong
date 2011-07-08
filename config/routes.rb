@@ -3,22 +3,23 @@ Balisong::Application.routes.draw do
   root :to => "homepage#index"
 
   # PagesController#index with a category arg
-  get 'category/:category',
+  get 'category/:category(.:format)',
     :to => 'pages#index',
     :constraints => {
       :category => /[\w%]+/
     }
   
   # pagescontroller#index with a date arg
-  get ':date_range',
+  get ':date_range(.:format)',
     :to => 'pages#index',
     :constraints => {
       :date_range => /\d{4}(\/\d{2})?(\/\d{2})?/
     }
 
   # pagescontroller#index with no args
-  get 'posts',
-    :to => 'pages#index'
+  get 'posts(.:format)',
+    :to => 'pages#index',
+    :as => 'posts'
 
   # PagesController#show with an id and optionally a part name
   get ':id(/:part)',

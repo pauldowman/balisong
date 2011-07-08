@@ -35,3 +35,5 @@
   = javascript_include_tag 'modernizr.min'
   
   = csrf_meta_tag
+
+  = auto_discovery_link_tag(:atom, posts_url(:format => :atom), :title => "Atom feed")

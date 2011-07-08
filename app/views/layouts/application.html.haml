@@ -29,6 +29,11 @@
         = yield
         
       %footer#footer
+        .feed
+          = link_to posts_url(:format => :atom) do
+            = image_tag('feed-icon-14x14.png')
+            %span
+              Atom feed
         .legal
           Copyright &copy; #{Date.today.year}
         .balisong-info

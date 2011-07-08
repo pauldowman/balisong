@@ -47,6 +47,7 @@ Features
     dumping a database).
   * The site's data can be rolled back to any previous version, and all history
     is kept forever (stored efficiently by Git).
+* Atom feed with autodiscovery link
 * Easy to hack on and customize
   * Balisong is a Rails 3 app using Haml and Sass
   * Good test coverage with Cucumber and Rspec

@@ -79,3 +79,38 @@ Feature: Page indexes
       | Scotch  | /category/Scotch  |
       | Whiskey | /category/Whiskey |
 
+
+  Scenario: List recent posts
+    Given the following pages:
+      | title   | body                      | id                 | categories |
+      | Bourbon | A blog post about Bourbon | 2010-08-01-bourbon |            |
+      | Rye     | A blog post about Rye     | 2010-08-11-rye     |            |
+      | Malt    | A blog post about Malt    | 2009-10-01-malt    |            |
+      | Scotch  | A blog post about Scotch  | 2010-10-01-scotch  |            |
+      | Rye     | Something about Rye       | rye                |            |
+    And The GitModel database is indexed
+    When I go to the path "/posts"
+    Then I should see the following list of links with css id "pages":
+      | Scotch  | /2010/10/01/scotch  |
+      | Rye     | /2010/08/11/rye     |
+      | Bourbon | /2010/08/01/bourbon |
+      | Malt    | /2009/10/01/malt    |
+
+
+  Scenario: View Atom feed
+    Given the following pages:
+      | title   | body                      | id                 | categories |
+      | Bourbon | A blog post about Bourbon | 2010-08-01-bourbon |            |
+      | Rye     | A blog post about Rye     | 2010-08-11-rye     |            |
+      | Malt    | A blog post about Malt    | 2009-10-01-malt    |            |
+      | Scotch  | A blog post about Scotch  | 2010-10-01-scotch  |            |
+      | Rye     | Something about Rye       | rye                |            |
+    And The GitModel database is indexed
+    When I go to the path "/posts.atom"
+    Then I should see an Atom feed with the following entries:
+      | title   | url                                       | content                   |
+      | Scotch  | http://www.example.com/2010/10/01/scotch  | A blog post about Scotch  |
+      | Rye     | http://www.example.com/2010/08/11/rye     | A blog post about Rye     |
+      | Bourbon | http://www.example.com/2010/08/01/bourbon | A blog post about Bourbon |
+      | Malt    | http://www.example.com/2009/10/01/malt    | A blog post about Malt    |
+
