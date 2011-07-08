@@ -73,7 +73,7 @@ module PagesHelper
 
   def preview_page(page)
     length = 220
-    link = link_to("Read on...", '/' + Page.urlify(page.id))
+    link = link_to("Read on...", page_url(page))
     strip_tags(render_part(page, page.main_part, Page.type(page.main_part))).truncate(length, :separator => ' ', :omission => "... <span class='more-link'>#{link}</span>").html_safe
   end
 end

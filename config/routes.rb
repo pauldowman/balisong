@@ -26,7 +26,8 @@ Balisong::Application.routes.draw do
     :constraints => {
       :id => /(\d{4}\/\d{2}\/\d{2}\/)?[\w-]+/,
       :part => /[\w\.-]+/
-    }
+    },
+    :as => 'page'
 
 
   # The priority is based upon order of creation:

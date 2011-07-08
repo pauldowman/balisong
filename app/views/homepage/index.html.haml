@@ -8,7 +8,7 @@
       - @recent_posts.each do |p|
         .post-preview{:id => "page-#{p.id}"}
           %h3
-            = link_to p.title, '/' + Page.urlify(p.id)
+            = link_to p.title, page_path(p)
           %p
             = preview_page(p)
           .post-metadata

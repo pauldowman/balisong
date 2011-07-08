@@ -23,7 +23,7 @@
                 =link_to "Home", root_path
               - @site_menu.each do |p|
                 %li
-                  = link_to p.title, '/' + Page.urlify(p.id)
+                  = link_to p.title, page_path(p)
 
       #main
         = yield

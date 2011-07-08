@@ -11,6 +11,6 @@
           %li
             = page.date
             →
-            = link_to page.title, '/' + Page.urlify(page.id)
+            = link_to page.title, page_path(page)
 
   = render :partial => 'menu'

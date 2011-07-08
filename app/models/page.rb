@@ -9,6 +9,10 @@ class Page
   attribute :allow_comments, :default => true # TODO implement comments
   attribute :include_in_feed, :default => true # TODO implement Atom feed
 
+  def to_param
+    Page.urlify(id)
+  end
+
   def date
     if id =~ /(\d{4}-\d{2}-\d{2})-.+/
       return Date.parse($1)
