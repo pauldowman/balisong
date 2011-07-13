@@ -76,5 +76,10 @@ module PagesHelper
     link = link_to("Read on...", page_url(page))
     strip_tags(render_part(page, page.main_part, Page.type(page.main_part))).truncate(length, :separator => ' ', :omission => "... <span class='more-link'>#{link}</span>").html_safe
   end
+
+  def link_to_page_with_title(page_id)
+    page = Page.find(page_id)
+    link_to(page.title, page_path(page))
+  end
 end
 
