@@ -4,7 +4,6 @@ class PagesController < ApplicationController
     # convert '/' characters in id to '-'
     id = Page.de_urlify(params[:id])
 
-    # TODO render 404 page if Page not found
     @page = Page.find(id)
     if params[:part]
       # Request is for a part, it will be sent unformatted
