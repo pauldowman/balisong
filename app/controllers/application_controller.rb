@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :populate_site_menu
+  before_filter :populate_all_categories
 
   rescue_from GitModel::RecordNotFound, :with => :render_404
  
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
 
   def populate_site_menu
     @site_menu = Page.find_all(:site_menu_position => lambda{|x| !x.nil?}, :order_by => :site_menu_position, :order => :asc)
+  end
+
+  def populate_all_categories
+    @all_categories = Page.all_categories
   end
 end

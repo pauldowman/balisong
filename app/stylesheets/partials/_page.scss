@@ -226,7 +226,7 @@ body {
   }
 }
 
-#page-side {
+#sidebar {
   @include eleven40-threecol;
   @include eleven40-last;
   margin-bottom: 18px;
@@ -239,8 +239,7 @@ body {
 #error-404 {
   @include eleven40-row;
   #notfound-message {
-    @include eleven40-twelvecol;
-    @include eleven40-last;
+    @include eleven40-ninecol;
   }
 }
 

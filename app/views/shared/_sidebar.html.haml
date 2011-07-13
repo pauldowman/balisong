@@ -1,4 +1,4 @@
-#page-side
+#sidebar
   #side-about
     %h3 About this site 
     %p
@@ -9,6 +9,6 @@
   %nav
     %h3 Categories
     %ul#all-categories
-      - @categories.each do |cat|
+      - @all_categories.each do |cat|
         %li
           = link_to cat, '/category/' + cat

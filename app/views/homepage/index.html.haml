@@ -17,5 +17,5 @@
               = p.date.strftime("%B %e, %Y")
       %p
         More posts about:
-        != @categories.sort.collect{ |c| link_to(c, "/category/#{c}")}.join(', ') + '.'
+        != @all_categories.sort.collect{ |c| link_to(c, "/category/#{c}")}.join(', ') + '.'
 

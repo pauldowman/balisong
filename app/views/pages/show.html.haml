@@ -23,5 +23,4 @@
           Categories:
           != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
 
-
-  = render :partial => 'menu'
+  = render :partial => 'shared/sidebar'
