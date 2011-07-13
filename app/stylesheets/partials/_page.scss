@@ -129,7 +129,11 @@ body {
           margin: none;
           padding-left: 12px;
           padding-right: 12px;
-          border-right: 1px dotted #888
+          border-right: 1px dotted #888;
+        }
+        li:last-of-type {
+          border-right: none;
+          padding-right: 0;
         }
       }
     }
