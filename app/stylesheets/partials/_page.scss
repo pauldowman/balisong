@@ -234,10 +234,15 @@ ul, ol {
 #sidebar {
   @include eleven40-threecol;
   @include eleven40-last;
+  @include font-size(14px);
   margin-bottom: 18px;
-  ul {
-    @include font-size(12px);
-    font-family: $heading-font-family;
+  nav {
+    margin-top: 12px;
+    ul {
+      @include font-size(14px);
+      font-family: $heading-font-family;
+      margin-bottom: 12px;
+    }
   }
 }
 
