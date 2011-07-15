@@ -78,8 +78,12 @@ module PagesHelper
   end
 
   def link_to_page_with_title(page_id)
-    page = Page.find(page_id)
-    link_to(page.title, page_path(page))
+    begin
+      page = Page.find(page_id)
+      link_to(page.title, page_path(page))
+    rescue GitModel::RecordNotFound
+      "[Page #{page_id} not found]"
+    end
   end
 end
 
