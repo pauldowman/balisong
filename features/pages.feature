@@ -79,7 +79,7 @@ Feature: Pages
     And The GitModel database is indexed
     When I go to the path "/htmltest"
     And I should see "So delicious" within "h2"
-    And I should see "<h2>So delicious</h2>" within "pre"
+    And I should see "<h2>So delicious</h2>" within ".page-content"
 
     
   Scenario: Page with ruby rendered as source code
@@ -101,8 +101,8 @@ Feature: Pages
       """
     And The GitModel database is indexed
     When I go to the path "/rubytest"
-    Then I should see "def wtf" within "pre"
-    And I should see "yay, the < and > were escaped properly" within "pre"
+    Then I should see "def wtf" within ".page-content"
+    And I should see "yay, the < and > were escaped properly" within ".page-content"
     
 
   Scenario: Page with only specified lines of a ruby file rendered as source code
@@ -120,15 +120,16 @@ Feature: Pages
         x = 1
         y = 2
         z = 3
+        a = 4
       end
       """
     And The GitModel database is indexed
     When I go to the path "/rubytest"
-    Then I should see "x = 1" within "pre"
-    And I should see "y = 2" within "pre"
-    And I should see "z = 3" within "pre"
+    Then I should see "x = 1" within ".page-content"
+    And I should see "y = 2" within ".page-content"
+    And I should see "z = 3" within ".page-content"
     And I should not see "def wtf(x)"
-    And I should not see "end"
+    And I should not see "a = 4"
     
 
     Scenario: Page with text file part
@@ -144,7 +145,7 @@ Feature: Pages
     And the page with id "texttest" has part "something.txt" with content "This is a text file."
     And The GitModel database is indexed
     When I go to the path "/texttest"
-    Then I should see "This is a text file" within "pre"
+    Then I should see "This is a text file" within ".page-content"
 
 
     Scenario: Page with image
