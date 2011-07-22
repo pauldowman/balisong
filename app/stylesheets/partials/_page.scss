@@ -122,7 +122,6 @@ ul, ol {
         @include font-size(48px);
         a {
           color: $font-color;
-          text-shadow: 1px 1px 0 #888;
         }
       }
       #tagline {
