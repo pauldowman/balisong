@@ -34,6 +34,11 @@
             = image_tag('feed-icon-14x14.png')
             %span
               Atom feed
+        .validation
+          = link_to "Validate", "http://validator.w3.org/unicorn/check?ucn_uri=#{request.url}&ucn_task=conformance"
+          |
+          = link_to "Check links", "http://validator.w3.org/checklink?uri=#{request.url}&hide_redirects=on&hide_type=all&depth=&check=Check#results1"
+
         .legal
           Copyright &copy; #{Date.today.year}
         .balisong-info
