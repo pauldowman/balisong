@@ -11,4 +11,4 @@
     %ul#all-categories
       - @all_categories.each do |cat|
         %li
-          = link_to cat, '/category/' + cat
+          = link_to cat, '/category/' + u(cat)
