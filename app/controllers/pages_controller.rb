@@ -36,7 +36,7 @@ class PagesController < ApplicationController
       @pages = Page.in_date_range(date_range)
     else
       @title = "Recent posts"
-      @pages = Page.recent_posts(:limit => 10)
+      @pages = Page.recent_posts(10)
     end
 
     respond_to do |format|

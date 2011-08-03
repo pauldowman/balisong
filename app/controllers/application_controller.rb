@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def populate_site_menu
-    @site_menu = Page.find_all(:site_menu_position => lambda{|x| !x.nil?}, :order_by => :site_menu_position, :order => :asc)
+    @site_menu = Page.find_all(:site_menu_position => lambda{|x| !x.nil?}, :order_by => :site_menu_position, :order => :asc, :cache_key => "site_menu")
   end
 
   def populate_all_categories

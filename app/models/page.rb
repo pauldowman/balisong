@@ -35,7 +35,7 @@ class Page
 
   # return all Page objects that have the given category in the categories array
   def self.in_category(category)
-    find_all(:categories => lambda{|cats| cats.include?(category)}, :order_by => :id, :order => :desc)
+    find_all(:categories => lambda{|cats| cats.include?(category)}, :order_by => :id, :order => :desc, :cache_key => "in_category:#{category.gsub(/\W/, '')}")
   end
 
   # return all Page objects that have a date that matches the given date range.
@@ -43,16 +43,17 @@ class Page
   # 'YYYY'
   def self.in_date_range(date_range)
     pattern = date_range.gsub(/\//, '-')
-    find_all(:id => lambda{|id| id =~ /^#{pattern}/}, :order_by => :id, :order => :desc)
+    find_all(:id => lambda{|id| id =~ /^#{pattern}/}, :order_by => :id, :order => :desc, :cache_key => "in_date_range:#{pattern}")
   end
 
-  def self.recent_posts(options = {})
+  def self.recent_posts(num = 20)
     # TODO add a spec
     options = {
       :id => lambda{|id| id =~ /^(\d+-){3}/},
       :order_by => :id, :order => :desc,
-      :limit => 20
-    }.merge(options)
+      :limit => num,
+      :cache_key => "recent_posts:#{num}"
+    }
 
     find_all(options)
   end
