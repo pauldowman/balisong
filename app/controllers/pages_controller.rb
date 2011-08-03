@@ -6,15 +6,16 @@ class PagesController < ApplicationController
 
     @page = Page.find(id)
     if params[:part]
+      render_404 and return unless @page.blobs[params[:part]]
       # Request is for a part, it will be sent unformatted
       if params[:download]
         disposition = 'attachment'
         mime_type = 'application/octet-stream'
       else
         disposition = 'inline'
-        mime_type = MIME::Types.type_for(params[:part]).first.content_type
+        t = MIME::Types.type_for(params[:part])
+        mime_type = t.any? ? t.first.content_type : 'application/octet-stream'
       end
-      # TODO render 404 page if Page doesn't have a blob with that name
       send_data @page.blobs[params[:part]], :disposition => disposition, :type => mime_type
     else
       # Request is for the main page, it will be formatted
