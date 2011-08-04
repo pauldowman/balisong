@@ -23,4 +23,14 @@
           Categories:
           != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
 
+      - if @page.is_post?
+        #comments
+          %h3
+            Comments
+          %p
+            Comment on this post
+            = link_to("on Twitter", "https://twitter.com/share?url=#{u(request.url)}&text=#{u(@page.title)}: ")
+            or privately
+            = mail_to(BALISONG["email"], "by email", :encode => "hex") + '.'
+
   = render :partial => 'shared/sidebar'
