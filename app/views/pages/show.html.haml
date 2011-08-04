@@ -23,6 +23,12 @@
           Categories:
           != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
 
+      #share
+        %h3
+          Share
+        %p
+          = render :partial => "share_buttons"
+
       - if @page.is_post?
         #comments
           %h3
