@@ -34,14 +34,14 @@ Feature: Pages
       | whiskey | /category/whiskey |
 
 
-  @wip
   Scenario: Missing page
     Given the following pages:
       | title   | body    | id      | categories |
       | Bourbon | A page. | bourbon |            |
     And The GitModel database is indexed
     When I go to the path "/scotch"
-    Then the response should be "not found"
+    Then I should see "The page you're looking for doesn't exist"
+    And the HTTP status code should be "404"
 
 
   Scenario: Page with multiple parts

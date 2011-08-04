@@ -44,3 +44,7 @@ Then /^(?:|I )should see "([^"]*)"(?: within (.*))?$/ do |text, selector|
   end
 end
 
+Then /^the HTTP status code should be "([^"]*)"$/ do |status|
+  page.status_code.should == status.to_i
+end
+
