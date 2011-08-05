@@ -224,8 +224,23 @@ ul, ol {
       margin-bottom: 12px;
       font-style: italic;
     }
-    #share p {
-      margin-top: 6px;
+    #share {
+      p {
+        margin-top: 6px;
+      }
+      .newsyc-share {
+        font-family: Verdana;
+        font-size: 13px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 12px;
+        img {
+          margin-right: 2px;
+        }
+        a span, a img {
+          vertical-align: top;
+        }
+      }
     }
   }
 }
