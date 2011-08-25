@@ -1,9 +1,16 @@
-%h2
-  = @title
-%ul#pages
-  - @pages.each do |page|
-    %li
-      = page.date
-      →
-      = link_to page.title, '/' + Page.urlify(page.id)
+#page-index
+  #list
+    %h2
+      = @title
 
+    - if @pages.empty?
+      No articles
+    - else
+      %ul#pages
+        - @pages.each do |page|
+          %li
+            = page.date
+            →
+            = link_to page.title, page_path(page)
+
+  = render :partial => 'shared/sidebar'

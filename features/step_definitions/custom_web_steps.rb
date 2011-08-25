@@ -6,7 +6,7 @@ Given /^(?:|I )am on the path "(.+)"$/ do |page_name|
   visit path_to(page_name)
 end
 
-Then /^The title should be "(.+)"$/ do |title|
+Then /^The page title should include "([^"]*)"/ do |title|
   page.should have_xpath('//head/title', :text => title)
 end
 
@@ -36,5 +36,15 @@ end
 
 Then /^I should see the following list of links with css id "(.+)":$/ do |id, table|
   table.diff!(tableish("ul##{id} li a", lambda{|el| [el, el.attribute('href')]}))
+end
+
+Then /^(?:|I )should see "([^"]*)"(?: within (.*))?$/ do |text, selector|
+  with_scope(selector) do
+    page.should have_content(text)
+  end
+end
+
+Then /^the HTTP status code should be "([^"]*)"$/ do |status|
+  page.status_code.should == status.to_i
 end
 

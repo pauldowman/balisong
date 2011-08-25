@@ -1,0 +1,3 @@
+[submodule "balisong-content"]
+	path = balisong-content
+	url = https://github.com/pauldowman/pauldowman.com-content.git

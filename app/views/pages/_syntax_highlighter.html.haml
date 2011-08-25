@@ -1,0 +1,23 @@
+- content_for :javascripts do
+  /
+    Includes for SyntaxHighlighter: http://alexgorbatchev.com/SyntaxHighlighter
+    TODO include all brushes and compress JS
+  = javascript_include_tag "/lib/syntaxhighlighter/scripts/shCore.js"
+  = javascript_include_tag "/lib/syntaxhighlighter/scripts/shAutoloader.js"
+  %script{:type => "text/javascript"}
+    SyntaxHighlighter.autoloader(
+    'bash shell /lib/syntaxhighlighter/scripts/shBrushBash.js',
+    'groovy /lib/syntaxhighlighter/scripts/shBrushGroovy.js',
+    'plain text /lib/syntaxhighlighter/scripts/shBrushPlain.js',
+    'sql /lib/syntaxhighlighter/scripts/shBrushSql.js',
+    'java /lib/syntaxhighlighter/scripts/shBrushJava.js',
+    'js jscript javascript /lib/syntaxhighlighter/scripts/shBrushJScript.js',
+    'ruby /lib/syntaxhighlighter/scripts/shBrushRuby.js',
+    'xml xhtml xslt html xhtml /lib/syntaxhighlighter/scripts/shBrushXml.js'
+    );
+    SyntaxHighlighter.all();
+
+- content_for :stylesheets do
+  = stylesheet_link_tag "/lib/syntaxhighlighter/styles/shCore.css"
+  = stylesheet_link_tag "compiled/syntaxhighlighter_theme.css"
+

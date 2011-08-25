@@ -9,8 +9,9 @@ describe Page do
       Page.create!(:id => 'two', :categories => ['monkey', 'gorilla'])
       Page.create!(:id => 'three', :categories => ['gorilla'])
       Page.create!(:id => 'four')
+      Page.index!(GitModel.default_branch)
 
-      Page.in_category('monkey').map{|page| page.id}.should == ['one', 'two']
+      Page.in_category('monkey').map{|page| page.id}.should == ['two', 'one']
     end
 
   end
@@ -23,6 +24,7 @@ describe Page do
       Page.create(:id => '2010-11-01-three')
       Page.create(:id => '2010-11-02-four')
       Page.create(:id => '2009-11-01-five')
+      Page.index!(GitModel.default_branch)
 
       Page.in_date_range('2010/11/01').map{|page| page.id}.sort.should == ['2010-11-01-two', '2010-11-01-three'].sort
     end
@@ -33,6 +35,7 @@ describe Page do
       Page.create(:id => '2010-11-02-three')
       Page.create(:id => '2010-09-02-four')
       Page.create(:id => '2009-11-01-five')
+      Page.index!(GitModel.default_branch)
 
       Page.in_date_range('2010/11').map{|page| page.id}.sort.should == ['2010-11-01-two', '2010-11-02-three'].sort
     end
@@ -43,6 +46,7 @@ describe Page do
       Page.create(:id => '2010-11-01-two')
       Page.create(:id => '2010-12-01-three')
       Page.create(:id => '2009-11-01-five')
+      Page.index!(GitModel.default_branch)
 
       Page.in_date_range('2010').map{|page| page.id}.sort.should == ['2010-11-01-two', '2010-12-01-three'].sort
     end

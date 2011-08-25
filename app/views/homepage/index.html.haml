@@ -1,15 +1,21 @@
-%h1
-  Main p
+#homepage
+  #posts-and-about
+    #about
+      = render :partial => 'about'
 
-Some recent posts:
-%ul#recent_posts
-  - @recent_posts.each do |p|
-    %li
-      = link_to p.title, '/' + Page.urlify(p.id)
-
-All categories:
-%ul#all_categories
-  - @categories.each do |cat|
-    %li
-      = link_to cat, '/category/' + cat
+    #recent-posts
+      %h2 Recent posts
+      - @recent_posts.each do |p|
+        .post-preview{:id => "page-#{p.id}"}
+          %h3
+            = link_to p.title, page_path(p)
+          %p
+            = preview_page(p)
+          .post-metadata
+            &ndash;
+            %time{:pubdate => true, :datetime => p.date.strftime("%Y-%m-%d")}
+              = p.date.strftime("%B %e, %Y")
+      %p
+        More posts about:
+        != @all_categories.sort.collect{ |c| link_to(c, "/category/#{u(c)}")}.join(', ') + '.'
 

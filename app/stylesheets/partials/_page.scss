@@ -1,0 +1,297 @@
+@import "compass/css3";
+@import "eleven40";
+@import "partials/code";
+
+//---------------------------------------------------
+// Default styles that should take effect everywhere
+//---------------------------------------------------
+
+body, select, input, textarea {
+  color: $font-color;
+  // Set your base font here, to apply evenly
+  // font-family: Georgia, serif;
+}
+
+//Headers (h1, h2, etc) have no default font-size or margin; define those yourself
+h1, h2, h3, h4, h5, h6 {
+  // Bold might not be the best choice if you are
+  // embedding a @font-face that's already bold
+  font-family: $heading-font-family;
+  font-weight: bold;
+}
+
+h1 {
+  @include font-size(32px);
+}
+
+h2 {
+  @include font-size(24px);
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 13px;
+}
+
+code {
+  font-family: $code-font-family;
+}
+
+em {
+  font-style: italic;
+}
+
+a, a:active, a:visited {
+  color: $link-color;
+  text-decoration: none;
+}
+a:hover { color: $link-hover-color; }
+
+strong, th {
+  font-weight: bold;
+}
+
+small {
+  // Use font-size mixin to convert to percentage for YUI
+  // http://developer.yahoo.com/yui/3/cssfonts/#fontsize
+  @include font-size(11px);  // approx 85% when base-font-size eq 13px
+}
+
+// Add the 'required' attribute on your
+// inputs if you want to use these
+input:valid, textarea:valid {}
+input:invalid, textarea:invalid {
+  @include border-radius(1px);
+  @include box-shadow(red, 0, 0, 5px, 0);
+}
+.no-boxshadow input:invalid,
+.no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+ol, ul {
+ margin-bottom: 12px;
+}
+
+nav {
+  ul {
+    list-style-type: none;
+    padding-left: 24px;
+    text-indent: -24px;
+  }
+}
+
+body {
+  font-family: $base-font-family;
+}
+
+#container {
+  @include eleven40-container;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+p:first-child {
+  margin-top: 10px;
+}
+
+.section {
+  border-bottom: 1px solid #DDD;
+}
+
+ul, ol {
+  padding-left: 22px; // bullets inside the box
+}
+
+//---------------------------------------
+// Page header
+//---------------------------------------
+
+#page-header {
+  #flash {
+    @include eleven40-row;
+  }
+
+  #page-header-main {
+    @include eleven40-row;
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 18px;
+
+    #site-title {
+      @include eleven40-sevencol;
+      margin-bottom: 18px;
+      h1 {
+        @include font-size(48px);
+        a {
+          color: $font-color;
+        }
+      }
+      #tagline {
+        font-weight: normal;
+      }
+    }
+
+    nav {
+      @include eleven40-fivecol;
+      @include eleven40-last;
+      ul#site-menu {
+        font-family: $heading-font-family;
+        text-transform: uppercase;
+        padding: 32px 0 0;
+        text-align: right;
+        li {
+          display: inline;
+          margin: none;
+          padding-left: 12px;
+          padding-right: 12px;
+          border-right: 1px dotted #888;
+        }
+        li:last-of-type {
+          border-right: none;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+//---------------------------------------
+// Main section
+//---------------------------------------
+
+#main {
+  margin-bottom: 24px;
+}
+
+#homepage {
+  #posts-and-about {
+    @include eleven40-row;
+    #about{
+      @include eleven40-sixcol;
+      pre {
+        @include code;
+      }
+    }
+    #recent-posts{
+      @include eleven40-sixcol;
+      @include eleven40-last;
+      p {
+        margin-bottom: 0px;
+        .more-link {
+          font-style: italic;
+        }
+      }
+      .post-metadata {
+        color: #888;
+        font-style: italic;
+        margin-bottom: 18px;
+      }
+    }
+  }
+}
+
+#page {
+  @include eleven40-row;
+  #content {
+    @include eleven40-ninecol;
+    ul, ol {
+      padding-left: 22px; // bullets inside the box
+    }
+    header {
+      padding-bottom: 14px;
+    }
+    .page-content {
+      pre {
+        @include code;
+      }
+      blockquote {
+        margin-left: 24px;
+        border-left: 1px solid #DDD;
+        padding-left: 12px;
+        @include font-size(13px);
+        font-style: italic;
+      }
+    }
+    .post-preview {
+      p {
+        margin-bottom: 0;
+      }
+      margin-bottom: 12px;
+    }
+    .post-metadata {
+      color: #888;
+      font-style: italic;
+    }
+    #page-categories {
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    #share {
+      p {
+        margin-top: 6px;
+      }
+      .newsyc-share {
+        font-family: Verdana;
+        font-size: 13px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 12px;
+        img {
+          margin-right: 2px;
+        }
+        a span, a img {
+          vertical-align: top;
+        }
+      }
+    }
+  }
+}
+
+#page-index {
+  @include eleven40-row;
+  #list {
+    @include eleven40-ninecol;
+  }
+}
+
+#sidebar {
+  @include eleven40-threecol;
+  @include eleven40-last;
+  @include font-size(14px);
+  margin-bottom: 18px;
+  nav {
+    margin-top: 12px;
+    ul {
+      @include font-size(14px);
+      font-family: $heading-font-family;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+#error-404 {
+  @include eleven40-row;
+  #notfound-message {
+    @include eleven40-ninecol;
+  }
+}
+
+//---------------------------------------
+// Page footer
+//---------------------------------------
+
+#footer {
+  @include eleven40-row;
+  text-align: center;
+  font-family: $heading-font-family;
+  @include font-size(12px);
+  margin-bottom: 18px;
+  .legal, .feed, .balisong-info {
+    @include eleven40-twelvecol;
+    @include eleven40-last;
+  }
+  .feed {
+    a span, a img {
+      vertical-align: middle;
+    }
+  }
+}
+

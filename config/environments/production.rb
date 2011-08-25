@@ -50,5 +50,6 @@ Balisong::Application.configure do
   # CHANGEME: Customize these
   GitModel.db_root = "/usr/local/balisong-content"
   GitModel.git_user_name = 'Balisong'
-  GitModel.git_user_email = nil
+  GitModel.git_user_email = 'balisong@example.com'
+  GitModel.memcache_servers = ['localhost']
 end

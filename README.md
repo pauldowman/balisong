@@ -13,13 +13,15 @@ Balisong believes that:
   you need some server-side functionality.
 * Content should be separate from the app and should be deployed/updated
   separately.
+* Content should be able to be versioned and managed as easily as source code
+  already is.
 
 
 Features
 --------
 
 * A post or page is [simply a directory of
-  files](https://github.com/pauldowman/balisong-sample-db/tree/master/pages/foo/).
+  files](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-02-08-mysql-s3-backup).
   There's a main file (think of it as index.html, but it can be Markdown,
   Textile, HTML, whatever), plus
   included partials, image files, source code files, and downloadable files of
@@ -45,9 +47,15 @@ Features
     dumping a database).
   * The site's data can be rolled back to any previous version, and all history
     is kept forever (stored efficiently by Git).
+* Atom feed with autodiscovery link
 * Easy to hack on and customize
   * Balisong is a Rails 3 app using Haml and Sass
   * Good test coverage with Cucumber and Rspec
+* Good design foundation
+  * [Haml](http://haml-lang.com/) (can be easily replaced or extended with regular ERB)
+  * [SCSS](http://sass-lang.com/) with [Compass](http://compass-style.org/)
+  * HTML 5, based on [HTML 5 boilerplate](http://html5boilerplate.com/) (as a [Compass extension](https://github.com/sporkd/compass-html5-boilerplate))
+  * [1140px grid as a Compass extension](https://github.com/zombor/eleven40-compass)
 
 
 Customization
@@ -55,8 +63,10 @@ Customization
 
 It's a standard Rails app, but you'll want to customize it. The best way to do that is to fork this repo on GitHub. Please do send pull requests for general changes.
 
+There is [sample content](https://github.com/pauldowman/pauldowman.com-content) added as a Git submodule, do `git submodule update` and it will be cloned into the balisong-content directory.
+
 Obviously you'll want to customize the look, which is done by editing the files
-under /app/views and the files under /public.  
+under /app/views, /app/stylesheets, and the files under /public.  
 
 There are also some important configuration options that need changing, such as
 the location of the git repo that contains the posts and pages. Search for
@@ -80,7 +90,10 @@ Format of pages and posts
 
 The content database (i.e. the Git repo where the page content is stored) has a directory named "pages" at it's root, and inside that it has a directory for each page or post.
 
-There's an example at [https://github.com/pauldowman/balisong-sample-db](https://github.com/pauldowman/balisong-sample-db)
+For an example, see the [content for pauldowman.com](https://github.com/pauldowman/pauldowman.com-content). Some notable pages to look at are:
+
+* A page with an image: [main page](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-06-30-speaking-at-futureruby/main.md), [all files](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-06-30-speaking-at-futureruby)
+* A page with embedded source code examples and downloadable files: [main page](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-02-08-mysql-s3-backup/main.md), [all files](https://github.com/pauldowman/pauldowman.com-content/tree/master/pages/2009-02-08-mysql-s3-backup)
 
 So each page or post is a directory inside CONTENT_ROOT/pages. The directory must contain two files:
 1. A file for your article text named "main.ext" where "ext" is one of the
@@ -129,6 +142,10 @@ Ruby code:
 
     {{ whiskey.rb | code(ruby) }}
 
+Only specific lines from a source code file:
+
+    {{ whiskey.rb | code(ruby) }}
+
 Plain text files can be rendered in &lt;pre&gt; blocks:
 
     {{ makersmark.txt | text }}
@@ -147,7 +164,8 @@ browser will prompt to download the file instead of displaying it:
 The included content files can, of course, include other files. (Recursive includes are detected by the app hanging forever or crashing or something, I haven't tried it. Definitely not recommended.)
 
 
-__Pages vs. Posts__
+Pages vs. Posts
+---------------
 
 Blog "posts" are simply pages that have a date as part of the directory name in
 the format `YYYY-MM-DD-post-id-string.`
@@ -160,18 +178,38 @@ http://yourblog.com/my-favorite-bourbons.
 Posts (as opposed to Pages) show up in the "Recent posts" list.
 
 
+Attributes
+----------
+
+Here are some attributes that you can use in the attributes.json file:
+
+* `title`: This is the title of the page/post, of course.
+* `categories`: An array of category names.
+* `site_menu_position`: An integer. If this is set, it determines where this page appears in the site menu (navigation links that appear on all pages).
+
+
+Developing
+----------
+
+Contributions (with tests!) are welcome. Balisong uses Cucumber and RSpec. To run the tests, do `rake spec cucumber` or `AUTOFEATURE=true autotest`.
+
+
 Contributors
 ------------
 
 * [Paul Dowman](http://pauldowman.com/about) ([@pauldowman](http://twitter.com/pauldowman))
+* [Gianni Chiappetta](http://gf3.ca/) ([@gf3](http://twitter.com/gf3))
 
 
 To do
 -----
 
+* Performance! Right now it is SLOOOOOW.
+  * GitModel needs query support.
+  * object caching, HTTP caching.
 * Documentation
 * A simple but nice-looking default design
-  * HTML 5 boilerplate? https://github.com/himmel/html5-boilerplate
+  * HTML 5
 * Atom feed
 * Comment support
 * Search for TODO in the code and Cucumber features tagged with @wip

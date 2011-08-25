@@ -3,18 +3,23 @@ Balisong::Application.routes.draw do
   root :to => "homepage#index"
 
   # PagesController#index with a category arg
-  get 'category/:category',
+  get 'category/:category(.:format)',
     :to => 'pages#index',
     :constraints => {
       :category => /[\w%]+/
     }
   
-  # PagesController#index with a date arg
-  get ':date_range',
+  # pagescontroller#index with a date arg
+  get ':date_range(.:format)',
     :to => 'pages#index',
     :constraints => {
       :date_range => /\d{4}(\/\d{2})?(\/\d{2})?/
     }
+
+  # pagescontroller#index with no args
+  get 'posts(.:format)',
+    :to => 'pages#index',
+    :as => 'posts'
 
   # PagesController#show with an id and optionally a part name
   get ':id(/:part)',
@@ -22,7 +27,8 @@ Balisong::Application.routes.draw do
     :constraints => {
       :id => /(\d{4}\/\d{2}\/\d{2}\/)?[\w-]+/,
       :part => /[\w\.-]+/
-    }
+    },
+    :as => 'page'
 
 
   # The priority is based upon order of creation:

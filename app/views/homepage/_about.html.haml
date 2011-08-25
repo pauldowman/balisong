@@ -1,0 +1,9 @@
+%h2 About this site 
+%p
+  Welcome. This site is powered by the 
+  = link_to "Balisong", "https://github.com/pauldowman/balisong"
+  blogging app.
+%p
+  Here is some info about Balisong:
+#readme
+  !~ RDiscount.new(File.read("#{Rails.root}/README.md")).to_html

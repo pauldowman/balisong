@@ -4,17 +4,21 @@ source :rubygems
 
 gem 'rails', '>=3.0.0'
 
+gem 'RedCloth'
+gem 'backports', :platforms => 'ruby_18'
+gem 'compass'
+gem 'eleven40'
 gem 'gitmodel'
 gem 'haml'
+gem 'html5-boilerplate'
 gem 'mime-types', :require => 'mime/types'
 gem 'rdiscount'
-gem 'RedCloth'
 
 group :development, :test do
   gem 'ZenTest'
   gem 'autotest'
-  gem 'autotest-fsevent' if RUBY_PLATFORM.downcase.include?("darwin") # OS X only
   gem 'autotest-rails'
+  gem 'awesome_print'
   gem 'capybara'
   gem 'cucumber-rails'
   gem 'launchy'

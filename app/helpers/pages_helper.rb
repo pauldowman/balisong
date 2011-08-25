@@ -7,19 +7,23 @@ module PagesHelper
   def render_part(page, part_name, formatter)
     if formatter.nil?
       formatter = Page.type(part_name)
-      formatter_arg = nil
+      formatter_args = nil
     elsif formatter =~ /(.*)\(([^\)]+)\)?/
       formatter = $1
-      formatter_arg = $2
+      formatter_args = $2
     else
       formatter = formatter
-      formatter_arg = nil
+      formatter_args = nil
     end
 
-    Rails.logger.info "Rendering part: #{page}/#{part_name} with formatter #{formatter} (with arg: #{formatter_arg})"
+    Rails.logger.info "Rendering part: #{page}/#{part_name} with formatter #{formatter} (with args: #{formatter_args})"
 
     raw_data = page.blobs[part_name]
     raise "Can't find part '#{part_name}'" unless raw_data
+
+    # TODO this probably isn't the right thing to do here, figure out how
+    # GitModel can set the correct encoding on the blob
+    raw_data = raw_data.force_encoding("UTF-8")
 
     # these should be extracted somewhere to be extensible
     case formatter
@@ -32,7 +36,18 @@ module PagesHelper
     when "text"
       out = "<pre>#{html_escape(raw_data)}</pre>"
     when "code"
-      lang = formatter_arg || Page.type(part_name)
+      if formatter_args =~ /(.*),\s*(\d+)-(\d+)/
+        # Only render specified line range of the content
+        lang = $1
+        first_line = $2.to_i
+        last_line = $3.to_i
+        range = (first_line-1..last_line-1)
+        raw_data = raw_data.lines.to_a[range].join
+      elsif formatter_args
+        lang = formatter_args
+      else
+        lang = Page.type(part_name)
+      end
       out = "<pre><code class='#{lang}'>#{html_escape(raw_data)}<code></pre>"
     when "image"
       # TODO use url_for here
@@ -48,13 +63,27 @@ module PagesHelper
 
     # Render sub-parts recursively
     unless skip_sub_render
-      # match {{ file.md }} or {{file.rb | code(ruby)}}, etc.
-      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[\w\.-]*\)?)?\s*\}\}/
+      # match {{ file.md }} or {{file.rb | code(ruby)}}, or {{file.rb | code(ruby, 2-4)}}, etc.
+      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[^\(\}]*\)?)?\s*\}\}/
       out = out.gsub(regex) {|match| render_part(page, $1, $2) }
     end
 
     return out
   end
 
+  def preview_page(page)
+    length = 220
+    link = link_to("Read on...", page_url(page))
+    strip_tags(render_part(page, page.main_part, Page.type(page.main_part))).truncate(length, :separator => ' ', :omission => "... <span class='more-link'>#{link}</span>").html_safe
+  end
+
+  def link_to_page_with_title(page_id)
+    begin
+      page = Page.find(page_id)
+      link_to(page.title, page_path(page))
+    rescue GitModel::RecordNotFound
+      "[Page #{page_id} not found]"
+    end
+  end
 end
 

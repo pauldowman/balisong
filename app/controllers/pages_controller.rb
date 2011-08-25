@@ -4,18 +4,18 @@ class PagesController < ApplicationController
     # convert '/' characters in id to '-'
     id = Page.de_urlify(params[:id])
 
-    # TODO render 404 page if Page not found
     @page = Page.find(id)
     if params[:part]
+      render_404 and return unless @page.blobs[params[:part]]
       # Request is for a part, it will be sent unformatted
       if params[:download]
         disposition = 'attachment'
         mime_type = 'application/octet-stream'
       else
         disposition = 'inline'
-        mime_type = MIME::Types.type_for(params[:part]).first.content_type
+        t = MIME::Types.type_for(params[:part])
+        mime_type = t.any? ? t.first.content_type : 'application/octet-stream'
       end
-      # TODO render 404 page if Page doesn't have a blob with that name
       send_data @page.blobs[params[:part]], :disposition => disposition, :type => mime_type
     else
       # Request is for the main page, it will be formatted
@@ -25,17 +25,25 @@ class PagesController < ApplicationController
   end
 
   def index
+    # TODO pagination
     category = params[:category]
     date_range = params[:date_range]
 
     if category
-      @title = category
+      @title = "All posts in category \"#{category}\""
       @pages = Page.in_category(category)
     elsif date_range
-      @title = "All posts in \"#{date_range}\""
+      @title = "All posts in date range \"#{date_range}\""
       @pages = Page.in_date_range(date_range)
+    else
+      @title = "Recent posts"
+      @pages = Page.recent_posts(10)
     end
 
-    @pages = @pages.sort {|a,b| (b.date || Date.new) <=> (a.date || Date.new) }
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
+
 end

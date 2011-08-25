@@ -1,20 +1,42 @@
 - @title = @page.title
 
-- if @page.categories && @page.categories.any?
-  Categories:
-  %ul#categories
-    - @page.categories.sort.each do |c|
-      %li
-        = link_to c, "/category/#{c}"
+- render :partial => "syntax_highlighter"
 
-- if @page.date
-  #date
-    Posted at:
-    = @page.date
-
-%h1
-  = @title
-	
 #page
-  ~ raw render_part(@page, @page.main_part, @formatter)
+  %article#content
+    %header
+      %h1
+        = @title
+        
+      - if @page.is_post?
+        .post-metadata
+          %time{:pubdate => true, :datetime => @page.date.strftime("%Y-%m-%d")}
+            = @page.date.strftime("%B %e, %Y")
 
+    .page-content{:id => "page-#{@page.id}"}
+      !~ render_part(@page, @page.main_part, @formatter)
+
+    %footer
+
+      - if @page.categories && @page.categories.any?
+        #page-categories
+          Categories:
+          != @page.categories.sort.collect { |c| link_to(c, "/category/#{c}")}.join(', ')
+
+      #share
+        %h3
+          Share
+        %p
+          = render :partial => "share_buttons"
+
+      - if @page.is_post?
+        #comments
+          %h3
+            Comments
+          %p
+            Comment on this post
+            = link_to("on Twitter", "https://twitter.com/share?url=#{u(request.url)}&text=#{u(@page.title)}: ")
+            or privately
+            = mail_to(BALISONG["email"], "by email", :encode => "hex") + '.'
+
+  = render :partial => 'shared/sidebar'
