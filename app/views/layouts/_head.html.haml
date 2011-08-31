@@ -7,10 +7,12 @@
   %meta{ :content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible" }/
   
   %title
-    -if @title.blank?
-      = BALISONG["site_title"]
-    - else
+    - if @title_override
+      = @title_override
+    - elsif @title
       #{@title} ➜ #{BALISONG["site_title"]}
+    - else
+      = BALISONG["site_title"]
     
   %meta{ :content => "", :name => "description" }/
   %meta{ :content => "", :name => "author" }/
