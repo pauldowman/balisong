@@ -55,6 +55,9 @@ module PaulDowman
         EOT
       end
       
+      def self.fraction_digits=(num)
+        @@fraction_digits = num
+      end
 
       def self.verbose=(boolean)
         @@verbose = boolean
@@ -94,6 +97,8 @@ module PaulDowman
       @@full_hostname = get_hostname
       @@hostname_maxlen = 10
       @@custom = nil
+      @@fraction_digits = 6
+
       
       # These are not configurable
       @@pid = $$
@@ -111,8 +116,8 @@ module PaulDowman
       
       def add_with_extra_info(severity, message = nil, progname = nil, &block)
         update_pid
-        time = @@verbose ? "#{Time.new.strftime('%H:%M:%S')}  " : ""
-        message = "#{time}#{ActiveSupport::BufferedLogger.severity_name(severity)}  #{message}"
+        time = @@verbose ? "#{Time.now.iso8601(@@fraction_digits)} " : ""
+        message = "#{time}#{ActiveSupport::BufferedLogger.severity_name(severity)} #{message}"
         
         # Make sure every line has the PID and hostname and custom string 
         # so we can use grep to isolate output from one process or server.
