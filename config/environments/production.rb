@@ -47,6 +47,8 @@ Balisong::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.colorize_logging = false
+
   # CHANGEME: Customize these
   GitModel.db_root = "/usr/local/balisong-content"
   GitModel.git_user_name = 'Balisong'
