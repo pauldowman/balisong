@@ -19,7 +19,13 @@ class ApplicationController < ActionController::Base
     if request.referer =~ /#{request.env["SERVER_NAME"]}/
       Rails.logger.warn "Page not found: #{request.path}, referer was #{request.referer}"
     end
-    render :template => "errors/404", :status => 404
+    if request.format != :html
+      # Avoid ActionView::MissingTemplate for sitemap.xml and other non-html
+      # requests
+      render :text => "not found"
+    else
+      render :template => "errors/404", :status => 404
+    end
   end
 
   def populate_site_menu
