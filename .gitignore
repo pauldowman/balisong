@@ -1,5 +1,6 @@
 .DS_Store
 .bundle
+.rvmrc
 TODO.txt
 capybara-*.html
 db/*.sqlite3
