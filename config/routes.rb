@@ -31,6 +31,10 @@ Balisong::Application.routes.draw do
     :as => 'page'
 
 
+  # Anything else is 404
+  # TODO remove this when we fix rescue_from ActionController::RoutingError in ApplicationController
+  match '*a', :to => 'application#default'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

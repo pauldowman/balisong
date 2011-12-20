@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
   before_filter :populate_all_categories
 
   rescue_from GitModel::RecordNotFound, :with => :render_404
+  #rescue_from ActionController::RoutingError, :with => :render_404 # TODO why doesn't this work?
  
+  # TODO remove this when we fix rescue_from
+  def default
+    render_404
+  end
+
   private
 
   def render_404
