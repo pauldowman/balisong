@@ -204,13 +204,8 @@ Contributors
 To do
 -----
 
-* Performance! Right now it is SLOOOOOW.
-  * GitModel needs query support.
-  * object caching, HTTP caching.
+* Update to Rails 3.1
 * Documentation
-* A simple but nice-looking default design
-  * HTML 5
-* Atom feed
 * Comment support
 * Search for TODO in the code and Cucumber features tagged with @wip
 
