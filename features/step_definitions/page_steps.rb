@@ -9,7 +9,7 @@ Given /the following pages:$/ do |pages|
   pages.hashes.map{|p| p[:site_menu_position] = p['site_menu_position'].blank? ? nil : p.delete('site_menu_position').to_i }
 
   Page.create!(pages.hashes)
-  Then %{there should be #{pages.hashes.length} pages}
+  step %{there should be #{pages.hashes.length} pages}
 end
 
 Given /the page with id "(.+)" has part "(.+)" with content "(.+)"$/ do | id, part_name, content |

@@ -14,6 +14,7 @@ Feature: Site menu
     And The GitModel database is indexed
     When I go to the path "/tequila"
     Then I should see the following list of links with css id "site-menu":
+      | text    | url                |
       | Home    | /                  |
       | Tequila | /tequila           |
       | Whiskey | /whiskey           |

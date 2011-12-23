@@ -35,7 +35,12 @@ Then /^the browser should be told to save the response as a file$/ do
 end
 
 Then /^I should see the following list of links with css id "(.+)":$/ do |id, table|
-  table.diff!(tableish("ul##{id} li a", lambda{|el| [el, el.attribute('href')]}))
+  result = find("ul##{id}").all('li')
+  table.rows.each_with_index do |row, i|
+    name = row[0]
+    url = row[1]
+    result[i].should have_link(name, :href => url)
+  end
 end
 
 Then /^(?:|I )should see "([^"]*)"(?: within (.*))?$/ do |text, selector|

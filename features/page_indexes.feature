@@ -12,27 +12,32 @@ Feature: Page indexes
     And The GitModel database is indexed
     When I go to the path "/category/Rye"
     Then I should see the following list of links with css id "pages":
+      | text   | url                |
       | Rye    | /rye               |
       | Scotch | /2010/10/01/scotch |
 
     When I go to the path "/category/Bourbon"
     Then I should see the following list of links with css id "pages":
+      | text    | url                 |
       | Scotch  | /2010/10/01/scotch  |
       | Bourbon | /2010/08/01/bourbon |
 
     When I go to the path "/category/Scotch"
     Then I should see the following list of links with css id "pages":
-      | Scotch  | /2010/10/01/scotch   |
+      | text   | url                |
+      | Scotch | /2010/10/01/scotch |
 
     When I go to the path "/category/Bourbon%20rye"
     Then I should see the following list of links with css id "pages":
-      | Scotch  | /2010/10/01/scotch   |
+      | text   | url                |
+      | Scotch | /2010/10/01/scotch |
 
     When I go to the path "/category/Alcohol"
     Then I should see the following list of links with css id "pages":
-      | Rye     | /rye                 |
-      | Scotch  | /2010/10/01/scotch   |
-      | Bourbon | /2010/08/01/bourbon  |
+      | text    | url                 |
+      | Rye     | /rye                |
+      | Scotch  | /2010/10/01/scotch  |
+      | Bourbon | /2010/08/01/bourbon |
 
 
   Scenario: List all posts in a date range
@@ -46,22 +51,26 @@ Feature: Page indexes
     And The GitModel database is indexed
     When I go to the path "/2010"
     Then I should see the following list of links with css id "pages":
+      | text    | url                 |
       | Scotch  | /2010/10/01/scotch  |
       | Rye     | /2010/08/11/rye     |
       | Bourbon | /2010/08/01/bourbon |
 
     When I go to the path "/2010/08"
     Then I should see the following list of links with css id "pages":
+      | text    | url                 |
       | Rye     | /2010/08/11/rye     |
       | Bourbon | /2010/08/01/bourbon |
 
     When I go to the path "/2010/08/11"
     Then I should see the following list of links with css id "pages":
-      | Rye   | /2010/08/11/rye |
+      | text | url             |
+      | Rye  | /2010/08/11/rye |
 
     When I go to the path "/2009/10/01"
     Then I should see the following list of links with css id "pages":
-      | Malt   | /2009/10/01/malt      |
+      | text | url              |
+      | Malt | /2009/10/01/malt |
 
 
   Scenario: Display a list of all categories
@@ -73,6 +82,7 @@ Feature: Page indexes
     And The GitModel database is indexed
     When I go to the path "/category/Whiskey"
     Then I should see the following list of links with css id "all-categories":
+      | text    | url               |
       | Alcohol | /category/Alcohol |
       | Malt    | /category/Malt    |
       | Rye     | /category/Rye     |
@@ -91,6 +101,7 @@ Feature: Page indexes
     And The GitModel database is indexed
     When I go to the path "/posts"
     Then I should see the following list of links with css id "pages":
+      | text    | url                 |
       | Scotch  | /2010/10/01/scotch  |
       | Rye     | /2010/08/11/rye     |
       | Bourbon | /2010/08/01/bourbon |

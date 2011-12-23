@@ -13,10 +13,11 @@ Feature: Pages
     Then I should see "A page with no date"
     And The page title should include "Whiskey"
     And I should see the following list of links with css id "all-categories":
-      | alcohol  | /category/alcohol  |
-      | bourbon  | /category/bourbon  |
-      | scotch   | /category/scotch   |
-      | whiskey  | /category/whiskey  |
+      | text    | url               |
+      | alcohol | /category/alcohol |
+      | bourbon | /category/bourbon |
+      | scotch  | /category/scotch  |
+      | whiskey | /category/whiskey |
 
 
   Scenario: Basic page with date in the id
@@ -28,6 +29,7 @@ Feature: Pages
     Then I should see "A page with no date"
     And The page title should include "Whiskey"
     And I should see the following list of links with css id "all-categories":
+      | text    | url               |
       | alcohol | /category/alcohol |
       | bourbon | /category/bourbon |
       | scotch  | /category/scotch  |
