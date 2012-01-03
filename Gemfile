@@ -2,7 +2,7 @@
 source :rubygems
 
 
-gem 'rails', '>=3.0.0'
+gem 'rails', '~>3.0.0'
 
 gem 'RedCloth'
 gem 'backports', :platforms => 'ruby_18'
