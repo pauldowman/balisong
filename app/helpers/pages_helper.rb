@@ -5,6 +5,8 @@ module PagesHelper
   # something like "code" or "html" or "code(ruby)".
   # If formatter is nil it will be guessed based on the file extension.
   def render_part(page, part_name, formatter)
+    # TODO this needs tests, especially for the regexes
+ 
     if formatter.nil?
       formatter = Page.type(part_name)
       formatter_args = nil
@@ -64,7 +66,7 @@ module PagesHelper
     # Render sub-parts recursively
     unless skip_sub_render
       # match {{ file.md }} or {{file.rb | code(ruby)}}, or {{file.rb | code(ruby, 2-4)}}, etc.
-      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[^\(\}]*\)?)?\s*\}\}/
+      regex = /\{\{\s*([\w\.-]+)\s*\|?\s*([\w\.-]+\(?[^\(\}]*\)?[^\s])?\s*\}\}/
       out = out.gsub(regex) {|match| render_part(page, $1, $2) }
     end
 

@@ -66,6 +66,26 @@ Feature: Pages
     And I should see "This is part 2"
     
 
+  Scenario: Page with multiple parts with spaces before/after braces
+    Given the following pages:
+      | title   | id      | categories |
+      | Bourbon | bourbon |            |
+    And the page with id "bourbon" has part "main.md" with content:
+      """
+      This is a post about *bourbon*.
+      It includes a mardown part:
+      {{ part1.md | markdown }}
+      And another markdown part with no explicit formatter:
+      {{ part2.md }}
+      """
+    And the page with id "bourbon" has part "part1.md" with content "This is part 1."
+    And the page with id "bourbon" has part "part2.md" with content "This is part 2."
+    And The GitModel database is indexed
+    When I go to the path "/bourbon"
+    Then I should see "This is part 1"
+    And I should see "This is part 2"
+    
+
   Scenario: Page with HTML rendered as source code
     Given the following pages:
       | title     | id       | categories |
