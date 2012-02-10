@@ -6,6 +6,7 @@ gem 'rails', '~>3.0.0'
 
 gem 'RedCloth'
 gem 'backports', :platforms => 'ruby_18'
+gem 'better_logging'
 gem 'compass'
 gem 'eleven40'
 gem 'gitmodel'

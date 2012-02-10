@@ -38,6 +38,7 @@ GEM
       ZenTest (= 4.5)
     awesome_print (1.0.2)
     backports (2.3.0)
+    better_logging (1.0.0)
     builder (2.1.2)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -163,6 +164,7 @@ DEPENDENCIES
   autotest-rails
   awesome_print
   backports
+  better_logging
   capybara
   compass
   cucumber-rails
