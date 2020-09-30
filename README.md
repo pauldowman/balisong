@@ -5,7 +5,7 @@ _[https://github.com/pauldowman/balisong](https://github.com/pauldowman/balisong
 
 Balisong believes that:
 
-* A coder should have a website that they hack on and customize.
+* A coder should have a website that they can hack on and customize.
 * The best way to edit website content is with your favorite text editor.
 * Source code sections in blog articles should be a first-class citizen, stored
   as source files rather than cut & pasted into the article text.
@@ -17,7 +17,7 @@ Balisong believes that:
   already is.
 
 
-Features
+Features and Key points
 --------
 
 * A post or page is [simply a directory of
@@ -32,7 +32,7 @@ Features
   * Code blocks can be separate source code files so that they can be tested,
     edited with syntax highlighting in your favorite editor, and so that you
     don't have to copy & paste.
-    * Code is rendered using syntax highlighting
+    * Code is rendered using syntax highlighting.
     * Any partial (i.e. "include" file) can be rendered as code, so you can
       have an HTML partial that gets rendered either as HTML or as source code
       (or both).
